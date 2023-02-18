@@ -21,8 +21,9 @@ module.exports = {
 // .color4 {color: #00aaff;}
 // .color5 {color: #00f6ff;}
 			colors: {
-				'app': '#0069a5',
-				'background': '#000219'
+				'app': '#00759d',
+				'second': '#00b0d1',
+				'background': '#002642'
 			},
 		},
   },
