@@ -1,10 +1,24 @@
 import React from 'react';
+import { Dialog } from '@mui/material';
+import Button from './Button';
 
-const Modal: React.FC = () => {
+interface ModalInterface {
+  isOpen: boolean;
+  children: any;
+  onClose: () => void;
+}
+
+const Modal: React.FC<ModalInterface> = ({ isOpen, children, onClose }) => {
   return (
-    <div className="absolute top-0 left-0 min-h-[100vh] min-w-[100vw] bg-black">
-      <div>HEllo</div>
-    </div>
+    <Dialog open={isOpen} onClose={onClose}>
+      <div className="flex justify-end">
+        <Button className="" onlyBorder onClick={onClose}>
+          Close
+        </Button>
+      </div>
+
+      <div className="p-5">{children}</div>
+    </Dialog>
   );
 };
 

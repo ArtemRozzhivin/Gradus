@@ -1,43 +1,53 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCoordByCity } from '../../redux/coordinates/selectors';
-import { fetchCoordByCity } from '../../redux/coordinates/slice';
+import { selectCities } from '../../redux/cities/selectors';
+import { fetchCities } from '../../redux/cities/slice';
 import { useAppDispatch } from '../../redux/store';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import Modal from '../../ui/Modal';
+import CityCard, { CityCardInterface } from '../CityCard';
 
 const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
 const SearchWeather = () => {
   const dispatch = useAppDispatch();
-  const { coordinates } = useSelector(selectCoordByCity);
-  const [searchWeather, setSearchWeather] = useState('');
+  const { cities } = useSelector(selectCities);
+  const [searchCity, setSearchCity] = useState('');
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const fetchWeather = async () => {
-    const response = await axios.get(
-      `https://api.openweathermap.org/geo/1.0/reverse?lat=50.4500336&lon=30.5241361&limit=5&appid=${apiKey}`,
-    );
-    console.log(response);
+  const closeModal = () => {
+    setIsOpenModal(false);
   };
 
-  const getCityCoord = () => {
-    dispatch(fetchCoordByCity(searchWeather));
+  const getCities = () => {
+    dispatch(fetchCities(searchCity));
+    setIsOpenModal(true);
   };
 
   const getWeather = (value: string) => {
-    setSearchWeather(value);
+    setSearchCity(value);
   };
 
-  console.log(searchWeather);
+  const clickCityCard = () => {
+    setIsOpenModal(false);
+  };
 
   return (
     <div className="flex gap-3">
-      <Input value={searchWeather} onChange={getWeather} />
-      <Button onClick={() => getCityCoord()}>Search</Button>
+      <Input value={searchCity} onChange={getWeather} />
+      <Button onClick={() => getCities()}>Search</Button>
 
-      <Modal />
+      <Modal onClose={closeModal} isOpen={isOpenModal}>
+        <ul className="flex items-center justify-center gap-3">
+          {cities.map((city: CityCardInterface, index) => (
+            <Button key={city.name + index} onClick={clickCityCard}>
+              <CityCard {...city} />
+            </Button>
+          ))}
+        </ul>
+      </Modal>
     </div>
   );
 };

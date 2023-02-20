@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import coordinatesReducer from './coordinates/slice';
+import citiesReducer from './cities/slice';
 
 export const store = configureStore({
   reducer: {
-    coordinates: coordinatesReducer,
+    cities: citiesReducer,
   },
 });
 
