@@ -1,26 +1,9 @@
-import { CoordStateType } from './types';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-
-const initialState: CoordStateType = {
-  cities: [],
-};
-
-export const fetchCities = createAsyncThunk(
-  'coordinates/fetchCoordByCityStatus',
-  async (city: string) => {
-    const { data } = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`,
-    );
-
-    return data;
-  },
-);
+import { initialState } from './types';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchCities } from './asyncFetchCities';
 
 export const citiesSlice = createSlice({
-  name: 'coordinates',
+  name: 'cities',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

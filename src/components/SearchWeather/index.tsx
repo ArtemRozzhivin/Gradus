@@ -1,20 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCities } from '../../redux/cities/selectors';
-import { fetchCities } from '../../redux/cities/slice';
+import { fetchCities } from '../../redux/Cities/asyncFetchCities';
+import { selectCities } from '../../redux/Cities/selectors';
 import { useAppDispatch } from '../../redux/store';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import Modal from '../../ui/Modal';
 import CityCard, { CityCardInterface } from '../CityCard';
 
-const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-
 const SearchWeather = () => {
   const dispatch = useAppDispatch();
   const { cities } = useSelector(selectCities);
-  const [searchCity, setSearchCity] = useState('');
+  const [searchCity, setSearchCity] = useState('London');
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const closeModal = () => {
@@ -40,7 +38,7 @@ const SearchWeather = () => {
       <Button onClick={() => getCities()}>Search</Button>
 
       <Modal onClose={closeModal} isOpen={isOpenModal}>
-        <ul className="flex items-center justify-center gap-3">
+        <ul className="flex items-center justify-center gap-3 flex-wrap">
           {cities.map((city: CityCardInterface, index) => (
             <Button key={city.name + index} onClick={clickCityCard}>
               <CityCard {...city} />

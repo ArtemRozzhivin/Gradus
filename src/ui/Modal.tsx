@@ -5,19 +5,22 @@ import Button from './Button';
 interface ModalInterface {
   isOpen: boolean;
   children: any;
+  className?: string;
   onClose: () => void;
 }
 
-const Modal: React.FC<ModalInterface> = ({ isOpen, children, onClose }) => {
+const Modal: React.FC<ModalInterface> = ({ isOpen, children, onClose, className }) => {
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <div className="flex justify-end">
-        <Button className="" onlyBorder onClick={onClose}>
-          Close
-        </Button>
-      </div>
+      <div className="p-3">
+        <div className="flex justify-end mb-2">
+          <Button onlyBorder onClick={onClose}>
+            Close
+          </Button>
+        </div>
 
-      <div className="p-5">{children}</div>
+        <div>{children}</div>
+      </div>
     </Dialog>
   );
 };
