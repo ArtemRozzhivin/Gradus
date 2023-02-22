@@ -1,15 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectCurrentWeather, selectWeather } from '../../redux/Weather/selectors';
+import { unixTimeToString } from '../../utils/unixTimeToString';
 
 const DetailCard = () => {
-  return (
+  // const { current } = useSelector(selectCurrentWeather);
+
+  const current = false;
+
+  // const data = unixTimeToString(current?.dt);
+
+  return current ? (
     <div className="bg-app p-5 rounded-2xl">
-      <div>Weather Kyiv</div>
-      <div>16 Feb</div>
+      {/* <div>Weather Name</div>
+      <div>{data}</div>
       <div>Saturday</div>
 
       <div>Forecast on nearly hour</div>
       <div>
-        <div>+5</div>
+        <div>{current.temp}</div>
         <div>
           <svg
             width="32"
@@ -25,17 +34,19 @@ const DetailCard = () => {
           </svg>
         </div>
       </div>
-      <div>Feels like +3</div>
+      <div>Feels like {current.feels_like}</div>
       <div>Clouds. Without precipitation</div>
-      <div>Pressure 754 mm Hg. Art.</div>
-      <div>Humidity 78%</div>
-      <div>Visibility: 10000 m</div>
-      <div>Wind 9.2 m/s</div>
+      <div>Pressure {current.presure} mm Hg. Art.</div>
+      <div>Humidity {current.humidity}%</div>
+      <div>Visibility: {current.visibility} m</div>
+      <div>Wind {current.wind_speed} m/s</div>
       <div>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt qui placeat vitae
         consequuntur. Commodi magni qui quae. Deleniti, voluptatum tempora.
-      </div>
+      </div> */}
     </div>
+  ) : (
+    <div>Loading</div>
   );
 };
 

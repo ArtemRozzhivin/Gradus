@@ -1,3 +1,7 @@
-export const initialState = {
-  weather: [],
+export type weatherSliceType = {
+  weather: {
+    current: {};
+    daily: {};
+    hourly: {};
+  };
 };

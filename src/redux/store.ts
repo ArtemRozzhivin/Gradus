@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import citiesReducer from './Cities/slice';
 import weatherReducer from './Weather/slice';
+import dailyWeatherReducer from './DailyWeather/slice';
 
 export const store = configureStore({
   reducer: {
     cities: citiesReducer,
     weather: weatherReducer,
+    dailyWeather: dailyWeatherReducer,
   },
 });
 

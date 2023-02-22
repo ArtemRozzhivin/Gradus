@@ -1,6 +1,10 @@
-import { initialState } from './types';
+import { citiesSliceType } from './types';
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchCities } from './asyncFetchCities';
+
+export const initialState: citiesSliceType = {
+  cities: [],
+};
 
 export const citiesSlice = createSlice({
   name: 'cities',

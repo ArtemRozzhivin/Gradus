@@ -5,16 +5,24 @@ interface ButtonInterface {
   onClick: () => void;
   className?: string;
   children: any;
+  primary?: boolean;
   onlyBorder?: boolean;
 }
 
-const Button: React.FC<ButtonInterface> = ({ onClick, className, children, onlyBorder }) => {
+const Button: React.FC<ButtonInterface> = ({
+  onClick,
+  className,
+  children,
+  onlyBorder,
+  primary,
+}) => {
   return (
     <button
       onClick={onClick}
       className={clsx(
-        'bg-second p-2 rounded-lg inline-block',
+        'inline-block',
         {
+          'bg-second p-2 text-xs rounded-lg': primary,
           'bg-transparent border border-solid border-second text-second': onlyBorder,
         },
         className,

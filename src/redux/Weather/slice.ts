@@ -1,6 +1,14 @@
+import { weatherSliceType } from './types';
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchWeatherByCoord } from './asyncFetchWeatherByCord';
-import { initialState } from './types';
+
+const initialState: weatherSliceType = {
+  weather: {
+    current: {},
+    daily: {},
+    hourly: {},
+  },
+};
 
 export const weatherSlice = createSlice({
   name: 'weather',
@@ -13,7 +21,9 @@ export const weatherSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchWeatherByCoord.pending, (state, action) => {});
     builder.addCase(fetchWeatherByCoord.fulfilled, (state, action) => {
-      state.weather = action.payload;
+      state.weather.current = action.payload.weather.current;
+      state.weather.daily = action.payload.weather.daily;
+      state.weather.hourly = action.payload.weather.hourly;
     });
     builder.addCase(fetchWeatherByCoord.rejected, (state, action) => {});
   },

@@ -1,3 +1,3 @@
-export const initialState = {
-  cities: [],
+export type citiesSliceType = {
+  cities: [];
 };
