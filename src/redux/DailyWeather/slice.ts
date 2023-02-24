@@ -3,7 +3,7 @@ import { fetchDailyWeather } from './asyncFetchDailyWeather';
 import { dailyWeatherSliceType } from './types';
 
 const initialState: dailyWeatherSliceType = {
-  daily: {},
+  daily: [],
 };
 
 const dailyWeatherSlice = createSlice({

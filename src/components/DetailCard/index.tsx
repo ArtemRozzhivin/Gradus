@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectCurrentWeather, selectWeather } from '../../redux/Weather/selectors';
-import { unixTimeToString } from '../../utils/unixTimeToString';
 
 const DetailCard = () => {
   // const { current } = useSelector(selectCurrentWeather);
