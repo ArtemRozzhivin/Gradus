@@ -1,51 +1,83 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectCurrentWeather, selectWeather } from '../../redux/Weather/selectors';
+import { selectDailyWeather } from '../../redux/DailyWeather/selectors';
+import { fetchDailyWeatherType } from '../../redux/DailyWeather/types';
+import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
 
-const DetailCard = () => {
-  // const { current } = useSelector(selectCurrentWeather);
+interface DetailCardProps {
+  current: fetchDailyWeatherType;
+}
 
-  const current = false;
+const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
+  const date = convertUnixToUkrainianDate(current.dt);
+  const { day, eve, morn, night, max, min } = current.temp;
 
-  // const data = unixTimeToString(current?.dt);
-
-  return current ? (
-    <div className="bg-app p-5 rounded-2xl">
-      {/* <div>Weather Name</div>
-      <div>{data}</div>
-      <div>Saturday</div>
-
-      <div>Forecast on nearly hour</div>
-      <div>
-        <div>{current.temp}</div>
+  return (
+    <div className="bg-app p-5 rounded-2xl flex flex-col gap-3">
+      <div className="bg-second rounded-md p-2">
+        <div>Weather Name ---</div>
+        <div>{date.date}</div>
+        <div>{date.dayOfWeek}</div>
         <div>
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M11.1964 9.38858L8.94638 6.29171M8.22775 13.4747L4.58716 12.2918M8.22775 18.5253L4.58716 19.7082M11.1964 22.6114L8.94638 25.7083M16 24.1721V28M20.8036 22.6114L23.0536 25.7083M23.7723 18.5253L27.4129 19.7082M23.7723 13.4747L27.4129 12.2918M20.8036 9.38858L23.0536 6.29171M16 7.82795V4M21.5655 16C21.5655 19.0737 19.0737 21.5655 16 21.5655C12.9263 21.5655 10.4346 19.0737 10.4346 16C10.4346 12.9263 12.9263 10.4345 16 10.4345C19.0737 10.4345 21.5655 12.9263 21.5655 16Z"
-              stroke="white"
-              strokeLinecap="round"
-            />
-          </svg>
+          {current.weather[0].main} {current.weather[0].description}
+        </div>
+        <img
+          src={`http://openweathermap.org/img/wn/${current.weather[0].icon}.png`}
+          alt="weather"
+        />
+      </div>
+
+      <div className="flex gap-5 items-center bg-second rounded-md p-2">
+        <div className="text-2xl">Температура</div>
+        <div className="flex flex-col items-center">
+          <div>в день</div>
+          <div>{day}</div>
+          <div>{current.feels_like.day}</div>
+        </div>
+        <div className="flex flex-col items-center">
+          <div>ввечері</div>
+          <div>{eve}</div>
+          <div>{current.feels_like.eve}</div>
+        </div>
+        <div className="flex flex-col items-center">
+          <div>вночі</div>
+          <div>{night}</div>
+          <div>{current.feels_like.night}</div>
+        </div>
+        <div className="flex flex-col items-center">
+          <div>зранку</div>
+          <div>{morn}</div>
+          <div>{current.feels_like.morn}</div>
+        </div>
+        <div className="flex flex-col items-center">
+          <div>максимальна</div>
+          <div>{max}</div>
+        </div>
+        <div className="flex flex-col items-center">
+          <div>мінімальна</div>
+          <div>{min}</div>
         </div>
       </div>
-      <div>Feels like {current.feels_like}</div>
-      <div>Clouds. Without precipitation</div>
-      <div>Pressure {current.presure} mm Hg. Art.</div>
-      <div>Humidity {current.humidity}%</div>
-      <div>Visibility: {current.visibility} m</div>
-      <div>Wind {current.wind_speed} m/s</div>
-      <div>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt qui placeat vitae
-        consequuntur. Commodi magni qui quae. Deleniti, voluptatum tempora.
-      </div> */}
+
+      <div className="bg-second rounded-md p-2">
+        <div>Вологість {current.humidity}%</div>
+        <div>Тиск {current.pressure} mm Hg. Art.</div>
+        <div>Ймовірність опадів {current.pop}%</div>
+        <div>УФ {current.uvi}</div>
+        <div>Швидкість вітру {current.wind_speed} м/сек</div>
+        <div>Хмарність {current.clouds}%</div>
+      </div>
+
+      <div className="bg-second rounded-md p-2">
+        <div>Схід сонця {current.sunrise}</div>
+        <div>Захід сонця {current.sunset}</div>
+      </div>
+
+      <div className="bg-second rounded-md p-2">
+        <div>Схід сонця {current.sunrise}</div>
+        <div>Захід сонця {current.sunset}</div>
+      </div>
     </div>
-  ) : (
-    <div>Loading</div>
   );
 };
 

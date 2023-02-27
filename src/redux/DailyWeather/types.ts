@@ -7,6 +7,7 @@ export type fetchDailyWeatherType = {
   pop: number;
   sunrise: number;
   sunset: number;
+  uvi: number;
   moonrise: number;
   moonset: number;
   temp: {
@@ -16,6 +17,12 @@ export type fetchDailyWeatherType = {
     night: number;
     max: number;
     min: number;
+  };
+  feels_like: {
+    day: number;
+    eve: number;
+    morn: number;
+    night: number;
   };
   weather: [
     {

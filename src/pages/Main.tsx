@@ -29,7 +29,7 @@ const Main: React.FC = () => {
           ))}
         </div>
 
-        <DetailCard />
+        <DetailCard current={daily[0]} />
       </div>
 
       <Footer />
