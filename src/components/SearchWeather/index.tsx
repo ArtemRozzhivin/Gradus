@@ -5,8 +5,6 @@ import { fetchCities } from '../../redux/Cities/asyncFetchCities';
 import { selectCities } from '../../redux/Cities/selectors';
 import { fetchDailyWeather } from '../../redux/DailyWeather/asyncFetchDailyWeather';
 import { useAppDispatch } from '../../redux/store';
-import { fetchWeatherByCoord } from '../../redux/Weather/asyncFetchWeatherByCord';
-import { selectWeather } from '../../redux/Weather/selectors';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import Modal from '../../ui/Modal';

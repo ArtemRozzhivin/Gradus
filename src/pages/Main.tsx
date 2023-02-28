@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import CurrentWeather from '../components/CurrentWeather';
 import DetailCard from '../components/DetailCard';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -41,6 +42,8 @@ const Main: React.FC = () => {
             <div>Loading</div>
           )}
         </div>
+
+        <CurrentWeather />
 
         {daily.length ? <DetailCard current={detail} /> : <div>Loading</div>}
       </div>
