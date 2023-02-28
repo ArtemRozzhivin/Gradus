@@ -25,5 +25,5 @@ export const convertUnixToUkrainianDate = (unixDate: number): Record<string, str
     dayOfWeek,
     date: `${day} ${month}`,
     time,
-  };
+  } as { dayOfWeek: string; date: string; time: string };
 };

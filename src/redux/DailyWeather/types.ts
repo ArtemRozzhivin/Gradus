@@ -40,4 +40,5 @@ export type fetchDailyWeatherProps = {
 
 export type dailyWeatherSliceType = {
   daily: fetchDailyWeatherType[];
+  detail: fetchDailyWeatherType;
 };

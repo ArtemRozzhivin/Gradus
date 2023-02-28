@@ -10,6 +10,10 @@ interface DetailCardProps {
 
 const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
   const date = convertUnixToUkrainianDate(current.dt);
+  const sunrise = convertUnixToUkrainianDate(current.sunrise);
+  const sunset = convertUnixToUkrainianDate(current.sunset);
+  const moonrise = convertUnixToUkrainianDate(current.moonrise);
+  const moonset = convertUnixToUkrainianDate(current.moonset);
   const { day, eve, morn, night, max, min } = current.temp;
 
   return (
@@ -50,12 +54,12 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
           <div>{current.feels_like.morn}</div>
         </div>
         <div className="flex flex-col items-center">
-          <div>максимальна</div>
-          <div>{max}</div>
-        </div>
-        <div className="flex flex-col items-center">
           <div>мінімальна</div>
           <div>{min}</div>
+        </div>
+        <div className="flex flex-col items-center">
+          <div>максимальна</div>
+          <div>{max}</div>
         </div>
       </div>
 
@@ -69,13 +73,13 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
       </div>
 
       <div className="bg-second rounded-md p-2">
-        <div>Схід сонця {current.sunrise}</div>
-        <div>Захід сонця {current.sunset}</div>
+        <div>Схід сонця {sunrise.time}</div>
+        <div>Захід сонця {sunset.time}</div>
       </div>
 
       <div className="bg-second rounded-md p-2">
-        <div>Схід сонця {current.sunrise}</div>
-        <div>Захід сонця {current.sunset}</div>
+        <div>Схід місяця {moonrise.time}</div>
+        <div>Захід місяця {moonset.time}</div>
       </div>
     </div>
   );
