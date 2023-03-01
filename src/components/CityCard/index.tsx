@@ -7,26 +7,18 @@ export interface CityCardInterface {
   lon: number;
   country: string;
   state?: string;
-  onClickCityCard: (lat: number, lon: number) => void;
 }
 
-const index: React.FC<CityCardInterface> = ({
-  name,
-  lat,
-  lon,
-  country,
-  state,
-  onClickCityCard,
-}) => {
+const index: React.FC<CityCardInterface> = ({ name, lat, lon, country, state }) => {
   return (
-    <Button primary onClick={() => onClickCityCard(lat, lon)}>
+    <>
       <div>
         {name}, {country}, {state}
       </div>
       <div>
         lat: {lat}, lon: {lon}
       </div>
-    </Button>
+    </>
   );
 };
 

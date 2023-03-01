@@ -1,15 +1,20 @@
-import { citiesSliceType } from './types';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchCities } from './asyncFetchCities';
+import { CitiesSliceType, CityType } from './types';
 
-export const initialState: citiesSliceType = {
+export const initialState: CitiesSliceType = {
   cities: [],
+  currentCity: {} as CityType,
 };
 
 export const citiesSlice = createSlice({
   name: 'cities',
   initialState,
-  reducers: {},
+  reducers: {
+    changeCurrentCity: (state, action: PayloadAction<CityType>) => {
+      state.currentCity = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchCities.pending, (state, action) => {});
     builder.addCase(fetchCities.fulfilled, (state, action) => {

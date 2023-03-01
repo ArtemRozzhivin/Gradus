@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { fetchCities } from '../../redux/Cities/asyncFetchCities';
 import { selectCities } from '../../redux/Cities/selectors';
+import { CityType } from '../../redux/Cities/types';
 import { fetchDailyWeather } from '../../redux/DailyWeather/asyncFetchDailyWeather';
 import { useAppDispatch } from '../../redux/store';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import Modal from '../../ui/Modal';
+import { getWindDirection } from '../../utils/getWindDirection';
 import CityCard, { CityCardInterface } from '../CityCard';
 
 const SearchWeather = () => {
@@ -29,11 +31,15 @@ const SearchWeather = () => {
     setSearchCity(value);
   };
 
-  const clickCityCard = (lat: number, lon: number) => {
+  const clickCityCard = (city: CityType) => {
+    const lat = city.lat,
+      lon = city.lon;
+
     closeModal();
-    // dispatch(fetchWeatherByCoord({ lat, lon }));
     dispatch(fetchDailyWeather({ lat, lon }));
   };
+
+  console.log(getWindDirection(180));
 
   return (
     <div className="flex gap-3">
@@ -44,8 +50,10 @@ const SearchWeather = () => {
 
       <Modal onClose={closeModal} isOpen={isOpenModal}>
         <ul className="flex items-center justify-center gap-3 flex-wrap">
-          {cities.map((city: CityCardInterface, index) => (
-            <CityCard key={city.name + index} {...city} onClickCityCard={clickCityCard} />
+          {cities.map((city: CityType, index) => (
+            <Button key={city.name + index} onClick={() => clickCityCard(city)} primary>
+              <CityCard {...city} />
+            </Button>
           ))}
         </ul>
       </Modal>

@@ -45,6 +45,7 @@ const CurrentWeather = () => {
       </div>
 
       <div className="bg-second rounded-md p-2">
+        <div>Видимість {current.visibility} метрів</div>
         <div>Вологість {current.humidity}%</div>
         <div>Тиск {current.pressure} mm Hg. Art.</div>
         <div>УФ {current.uvi}</div>

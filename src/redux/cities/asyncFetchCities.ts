@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { CityType } from './types';
 
 const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -10,6 +11,6 @@ export const fetchCities = createAsyncThunk(
       `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`,
     );
 
-    return data;
+    return data as CityType[];
   },
 );
