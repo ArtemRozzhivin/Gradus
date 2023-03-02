@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 
 interface ButtonInterface {
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   children: any;
   primary?: boolean;

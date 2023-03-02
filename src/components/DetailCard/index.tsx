@@ -19,7 +19,6 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
   return (
     <div className="bg-app p-5 rounded-2xl flex flex-col gap-3">
       <div className="bg-second rounded-md p-2">
-        <div>Weather Name ---</div>
         <div>{date.date}</div>
         <div>{date.dayOfWeek}</div>
         <div>

@@ -24,6 +24,6 @@ export const citiesSlice = createSlice({
   },
 });
 
-export const {} = citiesSlice.actions;
+export const { changeCurrentCity } = citiesSlice.actions;
 
 export default citiesSlice.reducer;

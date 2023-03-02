@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { fetchCurrentWeather } from '../../redux/CurrentWeather/asyncFetchCurrentWeather';
-import { selectCurrentWeather } from '../../redux/CurrentWeather/selectors';
-import { useAppDispatch } from '../../redux/store';
-import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
+import { fetchCurrentWeather } from '../../../redux/CurrentWeather/asyncFetchCurrentWeather';
+import { selectCurrentWeather } from '../../../redux/CurrentWeather/selectors';
+import { useAppDispatch } from '../../../redux/store';
+import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate';
 
-const CurrentWeather = () => {
+const Current = () => {
   const dispatch = useAppDispatch();
   const { current } = useSelector(selectCurrentWeather);
   const date = convertUnixToUkrainianDate(current.dt);
@@ -20,7 +20,6 @@ const CurrentWeather = () => {
     <div className="bg-app p-5 rounded-2xl flex flex-col gap-3">
       <div>Current Weather</div>
       <div className="bg-second rounded-md p-2">
-        <div>Weather Name ---</div>
         <div>{date.date}</div>
         <div>{date.dayOfWeek}</div>
         <div>
@@ -63,4 +62,4 @@ const CurrentWeather = () => {
   );
 };
 
-export default CurrentWeather;
+export default Current;

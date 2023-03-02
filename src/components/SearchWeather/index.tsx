@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { fetchCities } from '../../redux/Cities/asyncFetchCities';
 import { selectCities } from '../../redux/Cities/selectors';
+import { changeCurrentCity } from '../../redux/Cities/slice';
 import { CityType } from '../../redux/Cities/types';
 import { fetchDailyWeather } from '../../redux/DailyWeather/asyncFetchDailyWeather';
 import { useAppDispatch } from '../../redux/store';
@@ -10,12 +11,12 @@ import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import Modal from '../../ui/Modal';
 import { getWindDirection } from '../../utils/getWindDirection';
-import CityCard, { CityCardInterface } from '../CityCard';
+import CityCard from '../CityCard';
 
 const SearchWeather = () => {
   const dispatch = useAppDispatch();
   const { cities } = useSelector(selectCities);
-  const [searchCity, setSearchCity] = useState('Kyiv');
+  const [searchCity, setSearchCity] = useState('Malyn');
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const closeModal = () => {
@@ -36,6 +37,7 @@ const SearchWeather = () => {
       lon = city.lon;
 
     closeModal();
+    dispatch(changeCurrentCity(city));
     dispatch(fetchDailyWeather({ lat, lon }));
   };
 
