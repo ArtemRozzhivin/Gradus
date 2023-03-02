@@ -12,9 +12,9 @@ const weatherNavbar = [
 const WeatherNavigation: React.FC = () => {
   return (
     <div className="">
-      <div className="flex justify-center items-center gap-5">
+      <div className="flex justify-center items-center gap-2">
         {weatherNavbar.map((item) => (
-          <Link to={item.route}>
+          <Link key={item.name} to={item.route}>
             <Button>{item.name}</Button>
           </Link>
         ))}

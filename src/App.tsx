@@ -15,37 +15,25 @@ import { useAppDispatch } from './redux/store';
 import Button from './ui/Button';
 import TomorrowWeather from './pages/TomorrowWeather';
 import DailyWeather from './pages/DailyWeather';
+import MainLayout from './layouts/MainLayout';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { daily, detail } = useSelector(selectDailyWeather);
-  const { currentCity } = useSelector(selectCities);
-  console.log(daily);
 
   useEffect(() => {
     dispatch(fetchDailyWeather({ lat: 50.42, lon: 30 }));
   }, []);
 
   return (
-    <div className="relative max-w-container m-auto px-5 min-h-[100vh] flex flex-col gap-5">
-      <Header />
+    <div>
       <Routes>
-        <Route path="/" element={<CurrentWeather />} />
-        <Route path="/8-days" element={<DailyWeather />} />
-        <Route path="/tomorrow" element={<TomorrowWeather />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route path="/" element={<CurrentWeather />} />
+          <Route path="/8-days" element={<DailyWeather />} />
+          <Route path="/today" element={<TomorrowWeather />} />
+          <Route path="/tomorrow" element={<TomorrowWeather />} />
+        </Route>
       </Routes>
-
-      <div className="flex-auto flex flex-col gap-5">
-        {Object.keys(currentCity).length ? (
-          <div className="text-3xl">
-            {currentCity.name}, {currentCity.country}, {currentCity.state}
-          </div>
-        ) : (
-          ''
-        )}
-      </div>
-
-      <Footer />
     </div>
   );
 };
