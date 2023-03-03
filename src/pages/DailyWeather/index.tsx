@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import DetailCard from '../../components/DetailCard';
-import WeatherCard from '../../components/WeatherCard';
+import DayCard from '../../components/Weather/DayCard';
 import { selectDailyWeather } from '../../redux/DailyWeather/selectors';
 import { changeDetailCard } from '../../redux/DailyWeather/slice';
 import { fetchDailyWeatherType } from '../../redux/DailyWeather/types';
@@ -22,7 +22,7 @@ const DailyWeather: React.FC = () => {
         {daily.length ? (
           daily.map((obj) => (
             <Button key={obj.dt} onClick={() => onChangeDetail(obj)}>
-              <WeatherCard {...obj} />
+              <DayCard {...obj} />
             </Button>
           ))
         ) : (
