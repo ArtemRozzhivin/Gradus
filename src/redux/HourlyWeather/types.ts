@@ -1,6 +1,8 @@
 export type HourlyWeatherSliceType = {
   today: hourlyWeather[];
+  todayDetail: hourlyWeather;
   tomorrow: hourlyWeather[];
+  tomorrowDetail: hourlyWeather;
 };
 
 export type hourlyWeather = {

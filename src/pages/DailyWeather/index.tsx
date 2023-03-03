@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import DetailCard from '../../components/DetailCard';
+import DetailCard from '../../components/DetailDailyCard';
 import DayCard from '../../components/Weather/DayCard';
 import { selectDailyWeather } from '../../redux/DailyWeather/selectors';
 import { changeDetailCard } from '../../redux/DailyWeather/slice';

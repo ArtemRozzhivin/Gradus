@@ -1,16 +1,25 @@
 import { fetchHourlyWeather } from './asyncFetchHourlyWeather';
-import { createSlice } from '@reduxjs/toolkit';
-import { HourlyWeatherSliceType } from './types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { hourlyWeather, HourlyWeatherSliceType } from './types';
 
 const initialState: HourlyWeatherSliceType = {
   today: [],
+  todayDetail: {} as hourlyWeather,
   tomorrow: [],
+  tomorrowDetail: {} as hourlyWeather,
 };
 
 const hourlyWeatherSlice = createSlice({
   name: 'hourlyWeather',
   initialState,
-  reducers: {},
+  reducers: {
+    changeTodayDetailCard: (state, action: PayloadAction<hourlyWeather>) => {
+      state.todayDetail = action.payload;
+    },
+    changeTomorrowDetail: (state, action: PayloadAction<hourlyWeather>) => {
+      state.tomorrowDetail = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchHourlyWeather.pending, (state, action) => {});
     builder.addCase(fetchHourlyWeather.fulfilled, (state, action) => {
@@ -21,6 +30,6 @@ const hourlyWeatherSlice = createSlice({
   },
 });
 
-export const {} = hourlyWeatherSlice.actions;
+export const { changeTodayDetailCard, changeTomorrowDetail } = hourlyWeatherSlice.actions;
 
 export default hourlyWeatherSlice.reducer;
