@@ -12,7 +12,7 @@ const DetailHourCard: React.FC<DetailCardProps> = ({ current }) => {
   return (
     <div className="bg-app p-5 rounded-2xl flex flex-col gap-3">
       <div className="bg-second rounded-md p-2">
-        <div>{date.time}</div>
+        <div>{date.hours}</div>
         <div>
           {current.weather[0].main} {current.weather[0].description}
         </div>

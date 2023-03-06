@@ -4,6 +4,7 @@ import { CitiesSliceType, CityType } from './types';
 
 export const initialState: CitiesSliceType = {
   cities: [],
+  recentCities: [],
   currentCity: {} as CityType,
 };
 
@@ -11,6 +12,12 @@ export const citiesSlice = createSlice({
   name: 'cities',
   initialState,
   reducers: {
+    addCityToRecent: (state, action: PayloadAction<CityType>) => {
+      state.recentCities = [...state.recentCities, action.payload];
+    },
+    removeAllRecentCities: (state) => {
+      state.recentCities = [];
+    },
     changeCurrentCity: (state, action: PayloadAction<CityType>) => {
       state.currentCity = action.payload;
     },
@@ -24,6 +31,6 @@ export const citiesSlice = createSlice({
   },
 });
 
-export const { changeCurrentCity } = citiesSlice.actions;
+export const { changeCurrentCity, addCityToRecent, removeAllRecentCities } = citiesSlice.actions;
 
 export default citiesSlice.reducer;

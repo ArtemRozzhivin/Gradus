@@ -11,9 +11,9 @@ import TodayWeather from './pages/TodayWeather';
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchDailyWeather({ lat: 50.42, lon: 30 }));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchDailyWeather({ lat: 50.42, lon: 30 }));
+  // }, []);
 
   return (
     <div>

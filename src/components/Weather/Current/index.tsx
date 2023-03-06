@@ -12,9 +12,9 @@ const Current = () => {
   const sunrise = convertUnixToUkrainianDate(current.sunrise);
   const sunset = convertUnixToUkrainianDate(current.sunset);
 
-  useEffect(() => {
-    dispatch(fetchCurrentWeather({ lat: 50.42, lon: 30 }));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchCurrentWeather({ lat: 50.42, lon: 30 }));
+  // }, []);
 
   return Object.keys(current).length !== 0 ? (
     <div className="bg-app p-5 rounded-2xl flex flex-col gap-3">

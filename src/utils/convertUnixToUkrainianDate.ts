@@ -1,4 +1,4 @@
-export const convertUnixToUkrainianDate = (unixDate: number): Record<string, string> => {
+export const convertUnixToUkrainianDate = (unixDate: number) => {
   const daysOfWeek = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П`ятниця', 'Субота'];
   const months = [
     'Січ',
@@ -16,14 +16,19 @@ export const convertUnixToUkrainianDate = (unixDate: number): Record<string, str
   ];
 
   const date = new Date(unixDate * 1000);
+
   const dayOfWeek = daysOfWeek[date.getUTCDay()];
   const day = date.getUTCDate();
   const month = months[date.getUTCMonth()];
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
   const time = date.toLocaleTimeString('uk-UA', { hour12: false });
 
   return {
     dayOfWeek,
     date: `${day} ${month}`,
     time,
-  } as { dayOfWeek: string; date: string; time: string };
+    hours,
+    minutes,
+  } as { dayOfWeek: string; date: string; time: string; hours: number; minutes: number };
 };
