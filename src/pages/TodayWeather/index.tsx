@@ -4,7 +4,7 @@ import DetailHourCard from '../../components/DetailHourCard';
 import HourCard from '../../components/Weather/HourCard';
 import { fetchHourlyWeather } from '../../redux/HourlyWeather/asyncFetchHourlyWeather';
 import { selectHourlyWeather } from '../../redux/HourlyWeather/selectors';
-import { changeTodayDetailCard } from '../../redux/HourlyWeather/slice';
+import { changeTodayDetail } from '../../redux/HourlyWeather/slice';
 import { hourlyWeather } from '../../redux/HourlyWeather/types';
 import { useAppDispatch } from '../../redux/store';
 import Button from '../../ui/Button';
@@ -18,7 +18,7 @@ const TodayWeather = () => {
   // }, []);
 
   const onChangeDetail = (hour: hourlyWeather) => {
-    dispatch(changeTodayDetailCard(hour));
+    dispatch(changeTodayDetail(hour));
   };
 
   return (

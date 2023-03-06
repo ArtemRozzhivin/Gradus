@@ -13,7 +13,7 @@ const hourlyWeatherSlice = createSlice({
   name: 'hourlyWeather',
   initialState,
   reducers: {
-    changeTodayDetailCard: (state, action: PayloadAction<hourlyWeather>) => {
+    changeTodayDetail: (state, action: PayloadAction<hourlyWeather>) => {
       state.todayDetail = action.payload;
     },
     changeTomorrowDetail: (state, action: PayloadAction<hourlyWeather>) => {
@@ -26,11 +26,12 @@ const hourlyWeatherSlice = createSlice({
       state.today = action.payload.slice(0, 24);
       state.todayDetail = action.payload[0];
       state.tomorrow = action.payload.slice(24, 48);
+      state.tomorrowDetail = action.payload[24];
     });
     builder.addCase(fetchHourlyWeather.rejected, (state, action) => {});
   },
 });
 
-export const { changeTodayDetailCard, changeTomorrowDetail } = hourlyWeatherSlice.actions;
+export const { changeTodayDetail, changeTomorrowDetail } = hourlyWeatherSlice.actions;
 
 export default hourlyWeatherSlice.reducer;
