@@ -7,14 +7,9 @@ import TomorrowWeather from './pages/TomorrowWeather';
 import DailyWeather from './pages/DailyWeather';
 import MainLayout from './layouts/MainLayout';
 import TodayWeather from './pages/TodayWeather';
+import axios from 'axios';
 
 const App: React.FC = () => {
-  const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchDailyWeather({ lat: 50.42, lon: 30 }));
-  // }, []);
-
   return (
     <div>
       <Routes>

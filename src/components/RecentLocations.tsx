@@ -49,7 +49,11 @@ const RecentLocations: React.FC = () => {
             Remove all cities
           </Button>
           {recentCities.map((city: CityType, index) => (
-            <Button key={city.name + index} onClick={() => clickCityCard(city)} primary>
+            <Button
+              className="group"
+              key={city.name + index}
+              onClick={() => clickCityCard(city)}
+              primary>
               <CityCard {...city} />
             </Button>
           ))}
