@@ -1,26 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import MapCard from '../components/MapCard';
 import { selectCities } from '../redux/Cities/selectors';
-import { getUserLocations } from '../utils/getUserLocations';
+import { selectLocations } from '../redux/Locations/selectors';
 
 const MainLayout: React.FC = () => {
   const { currentCity } = useSelector(selectCities);
-  const [coord, setCoord] = useState<{ lat: string | number; lon: string | number }>();
+  const { userLocation } = useSelector(selectLocations);
 
-  useEffect(() => {
-    getUserLocations().then((res) => setCoord({ lat: res[0], lon: res[1] }));
-  }, []);
+  useEffect(() => {}, []);
 
-  useEffect(() => {
-    if (Object.keys(currentCity).length) {
-      setCoord({ lat: currentCity.lat, lon: currentCity.lon });
-    }
-  }, [currentCity]);
+  useEffect(() => {}, [currentCity]);
 
   return (
     <div className="relative max-w-container m-auto px-5 min-h-[100vh] flex flex-col gap-5">
@@ -35,9 +29,9 @@ const MainLayout: React.FC = () => {
           ''
         )}
 
-        {coord ? <MapCard coord={coord} /> : <div>Load</div>}
-
         <Outlet />
+
+        {userLocation ? <MapCard coord={userLocation} /> : <div>Load</div>}
       </div>
 
       <Footer />

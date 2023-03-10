@@ -8,6 +8,8 @@ import { CityType } from '../../redux/Cities/types';
 import { fetchCurrentWeather } from '../../redux/CurrentWeather/asyncFetchCurrentWeather';
 import { fetchDailyWeather } from '../../redux/DailyWeather/asyncFetchDailyWeather';
 import { fetchHourlyWeather } from '../../redux/HourlyWeather/asyncFetchHourlyWeather';
+import { fetchUserLocation } from '../../redux/Locations/asyncFetchUserLocation';
+import { selectLocations } from '../../redux/Locations/selectors';
 import { useAppDispatch } from '../../redux/store';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
@@ -15,9 +17,14 @@ import Modal from '../../ui/Modal';
 import { getWindDirection } from '../../utils/getWindDirection';
 import CityCard from '../CityCard';
 
-const SearchWeather = () => {
+interface SearchWeatherType {
+  cities: CityType[];
+}
+
+const SearchWeather: React.FC<SearchWeatherType> = ({ cities }) => {
   const dispatch = useAppDispatch();
-  const { cities } = useSelector(selectCities);
+  const { userLocation } = useSelector(selectLocations);
+
   const [searchCity, setSearchCity] = useState('Malyn');
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -38,8 +45,6 @@ const SearchWeather = () => {
     const lat = city.lat,
       lon = city.lon;
 
-    console.log(city);
-
     closeModal();
     dispatch(addCityToRecent(city));
     dispatch(changeCurrentCity(city));
@@ -49,12 +54,7 @@ const SearchWeather = () => {
   };
 
   useEffect(() => {
-    const lat = 50.76,
-      lon = 30.24;
-
-    dispatch(fetchCurrentWeather({ lat, lon }));
-    dispatch(fetchHourlyWeather({ lat, lon }));
-    dispatch(fetchDailyWeather({ lat, lon }));
+    dispatch(fetchUserLocation());
   }, []);
 
   return (

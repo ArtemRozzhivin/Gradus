@@ -11,9 +11,12 @@ import Button from '../ui/Button';
 import Modal from '../ui/Modal';
 import CityCard from './CityCard';
 
-const RecentLocations: React.FC = () => {
+interface RecentLocationsType {
+  recentCities: CityType[];
+}
+
+const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
   const dispatch = useAppDispatch();
-  const { recentCities } = useSelector(selectCities);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const closeModal = () => {
@@ -23,8 +26,6 @@ const RecentLocations: React.FC = () => {
   const clickCityCard = (city: CityType) => {
     const lat = city.lat,
       lon = city.lon;
-
-    console.log(city);
 
     closeModal();
     dispatch(changeCurrentCity(city));
@@ -37,6 +38,7 @@ const RecentLocations: React.FC = () => {
     dispatch(removeAllRecentCities());
     closeModal();
   };
+
   return (
     <div>
       <Button onClick={() => setIsOpenModal(true)} primary>
