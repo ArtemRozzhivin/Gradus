@@ -50,7 +50,7 @@ const SearchWeather = () => {
 
   useEffect(() => {
     const lat = 50.76,
-      lon = 29.24;
+      lon = 30.24;
 
     dispatch(fetchCurrentWeather({ lat, lon }));
     dispatch(fetchHourlyWeather({ lat, lon }));
