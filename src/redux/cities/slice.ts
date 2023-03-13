@@ -6,6 +6,7 @@ export const initialState: CitiesSliceType = {
   cities: [],
   recentCities: [],
   currentCity: {} as CityType,
+  userCity: {} as CityType,
 };
 
 export const citiesSlice = createSlice({
@@ -13,7 +14,13 @@ export const citiesSlice = createSlice({
   initialState,
   reducers: {
     addCityToRecent: (state, action: PayloadAction<CityType>) => {
-      state.recentCities = [...state.recentCities, action.payload];
+      const findCity = state.recentCities.find(
+        (city) => city.lat === action.payload.lat && city.lon === action.payload.lon,
+      );
+
+      if (!findCity) {
+        state.recentCities = [...state.recentCities, action.payload];
+      }
     },
     removeAllRecentCities: (state) => {
       state.recentCities = [];
@@ -26,6 +33,9 @@ export const citiesSlice = createSlice({
     changeCurrentCity: (state, action: PayloadAction<CityType>) => {
       state.currentCity = action.payload;
     },
+    addUserCity: (state, action: PayloadAction<CityType>) => {
+      state.userCity = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCities.pending, (state, action) => {});
@@ -36,7 +46,12 @@ export const citiesSlice = createSlice({
   },
 });
 
-export const { changeCurrentCity, addCityToRecent, removeAllRecentCities, removeRecentCity } =
-  citiesSlice.actions;
+export const {
+  changeCurrentCity,
+  addCityToRecent,
+  removeAllRecentCities,
+  removeRecentCity,
+  addUserCity,
+} = citiesSlice.actions;
 
 export default citiesSlice.reducer;

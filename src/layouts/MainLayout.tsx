@@ -9,12 +9,10 @@ import { selectCities } from '../redux/Cities/selectors';
 import { selectLocations } from '../redux/Locations/selectors';
 
 const MainLayout: React.FC = () => {
-  const { currentCity } = useSelector(selectCities);
+  const { currentCity, userCity } = useSelector(selectCities);
   const { userLocation, currentLocation } = useSelector(selectLocations);
 
-  useEffect(() => {}, []);
-
-  useEffect(() => {}, [currentCity]);
+  console.log(userCity);
 
   return (
     <div className="relative max-w-container m-auto px-5 min-h-[100vh] flex flex-col gap-5">
@@ -26,7 +24,9 @@ const MainLayout: React.FC = () => {
             {currentCity.name}, {currentCity.country}, {currentCity.state}
           </div>
         ) : (
-          ''
+          <div className="text-3xl">
+            {userCity.name}, {userCity.country}, {userCity.state}
+          </div>
         )}
 
         <Outlet />

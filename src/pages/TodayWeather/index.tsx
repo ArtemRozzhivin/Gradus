@@ -12,10 +12,6 @@ const TodayWeather = () => {
   const dispatch = useAppDispatch();
   const { today, todayDetail } = useSelector(selectWeather);
 
-  // useEffect(() => {
-  //   dispatch(fetchHourlyWeather({ lat: 50.42, lon: 30 }));
-  // }, []);
-
   const onChangeDetail = (hour: hourlyWeatherType) => {
     dispatch(changeTodayDetail(hour));
   };

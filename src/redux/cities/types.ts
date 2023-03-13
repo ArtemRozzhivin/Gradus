@@ -2,6 +2,7 @@ export type CitiesSliceType = {
   cities: CityType[];
   recentCities: CityType[];
   currentCity: CityType;
+  userCity: CityType;
 };
 
 export type CityType = {
