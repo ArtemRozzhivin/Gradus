@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectCities } from '../redux/Cities/selectors';
-import { changeCurrentCity, removeAllRecentCities } from '../redux/Cities/slice';
+import { changeCurrentCity, removeAllRecentCities, removeRecentCity } from '../redux/Cities/slice';
 import { CityType } from '../redux/Cities/types';
+import { changeCurrentLocation } from '../redux/Locations/slice';
+import { Locations } from '../redux/Locations/types';
 import { useAppDispatch } from '../redux/store';
 import { fetchWeather } from '../redux/Weather/asyncFetchWeather';
 import Button from '../ui/Button';
@@ -26,6 +28,7 @@ const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
       lon = city.lon;
 
     closeModal();
+    dispatch(changeCurrentLocation({ lat, lon }));
     dispatch(changeCurrentCity(city));
     dispatch(fetchWeather({ lat, lon }));
   };
@@ -35,6 +38,10 @@ const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
     closeModal();
   };
 
+  const onRemoveCity = (city: CityType) => {
+    dispatch(removeRecentCity(city));
+  };
+
   return (
     <div>
       <Button onClick={() => setIsOpenModal(true)} primary>
@@ -42,20 +49,28 @@ const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
       </Button>
 
       <Modal isOpen={isOpenModal} onClose={closeModal}>
-        <ul className="flex items-center justify-center gap-3 flex-wrap">
-          <Button onClick={onRemoveAll} red>
-            Remove all cities
-          </Button>
-          {recentCities.map((city: CityType, index) => (
-            <Button
-              className="group"
-              key={city.name + index}
-              onClick={() => clickCityCard(city)}
-              primary>
-              <CityCard {...city} />
+        {recentCities.length ? (
+          <ul className="flex items-center justify-center gap-3 flex-wrap">
+            <Button onClick={onRemoveAll} red>
+              Remove all cities
             </Button>
-          ))}
-        </ul>
+            {recentCities.map((city: CityType, index) => (
+              <div className="group relative">
+                <Button key={city.name + index} onClick={() => clickCityCard(city)} primary>
+                  <CityCard {...city} />
+                </Button>
+                <Button
+                  onClick={() => onRemoveCity(city)}
+                  className="group-hover:block hidden h-full absolute text-xl top-0 right-0 hover:text-white"
+                  primary>
+                  X
+                </Button>
+              </div>
+            ))}
+          </ul>
+        ) : (
+          <div>Ви не додавали міст!</div>
+        )}
       </Modal>
     </div>
   );

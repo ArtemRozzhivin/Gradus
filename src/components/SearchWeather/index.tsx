@@ -6,6 +6,7 @@ import { addCityToRecent, changeCurrentCity } from '../../redux/Cities/slice';
 import { CityType } from '../../redux/Cities/types';
 import { fetchUserLocation } from '../../redux/Locations/asyncFetchUserLocation';
 import { selectLocations } from '../../redux/Locations/selectors';
+import { changeCurrentLocation } from '../../redux/Locations/slice';
 import { useAppDispatch } from '../../redux/store';
 import { fetchWeather } from '../../redux/Weather/asyncFetchWeather';
 import Button from '../../ui/Button';
@@ -41,6 +42,7 @@ const SearchWeather: React.FC<SearchWeatherType> = ({ cities }) => {
       lon = city.lon;
 
     closeModal();
+    dispatch(changeCurrentLocation({ lat, lon }));
     dispatch(addCityToRecent(city));
     dispatch(changeCurrentCity(city));
     dispatch(fetchWeather({ lat, lon }));

@@ -18,6 +18,11 @@ export const citiesSlice = createSlice({
     removeAllRecentCities: (state) => {
       state.recentCities = [];
     },
+    removeRecentCity: (state, action: PayloadAction<CityType>) => {
+      state.recentCities = state.recentCities.filter(
+        (city) => city.lat !== action.payload.lat || city.lon !== action.payload.lon,
+      );
+    },
     changeCurrentCity: (state, action: PayloadAction<CityType>) => {
       state.currentCity = action.payload;
     },
@@ -31,6 +36,7 @@ export const citiesSlice = createSlice({
   },
 });
 
-export const { changeCurrentCity, addCityToRecent, removeAllRecentCities } = citiesSlice.actions;
+export const { changeCurrentCity, addCityToRecent, removeAllRecentCities, removeRecentCity } =
+  citiesSlice.actions;
 
 export default citiesSlice.reducer;

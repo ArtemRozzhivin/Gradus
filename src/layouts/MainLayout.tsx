@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import MapCard from '../components/MapCard';
@@ -10,7 +10,7 @@ import { selectLocations } from '../redux/Locations/selectors';
 
 const MainLayout: React.FC = () => {
   const { currentCity } = useSelector(selectCities);
-  const { userLocation } = useSelector(selectLocations);
+  const { userLocation, currentLocation } = useSelector(selectLocations);
 
   useEffect(() => {}, []);
 
@@ -31,7 +31,11 @@ const MainLayout: React.FC = () => {
 
         <Outlet />
 
-        {userLocation ? <MapCard coord={userLocation} /> : <div>Load</div>}
+        {userLocation ? (
+          <MapCard coord={Object.keys(currentLocation).length ? currentLocation : userLocation} />
+        ) : (
+          <div>Load</div>
+        )}
       </div>
 
       <Footer />

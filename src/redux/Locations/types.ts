@@ -1,6 +1,6 @@
 export type LocationsSliceType = {
   userLocation: Locations;
-  currentLocations: Locations;
+  currentLocation: Locations;
 };
 
 export type Locations = {

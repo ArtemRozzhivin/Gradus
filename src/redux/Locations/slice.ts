@@ -1,16 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchUserLocation } from './asyncFetchUserLocation';
 import { Locations, LocationsSliceType } from './types';
 
 export const initialState: LocationsSliceType = {
   userLocation: {} as Locations,
-  currentLocations: {} as Locations,
+  currentLocation: {} as Locations,
 };
 
 export const locationsSlice = createSlice({
   name: 'locations',
   initialState,
-  reducers: {},
+  reducers: {
+    changeCurrentLocation: (state, action: PayloadAction<Locations>) => {
+      state.currentLocation = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchUserLocation.pending, (state, action) => {});
     builder.addCase(fetchUserLocation.fulfilled, (state, action) => {
@@ -22,6 +26,6 @@ export const locationsSlice = createSlice({
   },
 });
 
-export const {} = locationsSlice.actions;
+export const { changeCurrentLocation } = locationsSlice.actions;
 
 export default locationsSlice.reducer;
