@@ -1,13 +1,11 @@
 import { AsyncThunkAction } from '@reduxjs/toolkit';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { fetchDailyWeather } from '../../../redux/DailyWeather/asyncFetchDailyWeather';
-import { selectDailyWeather } from '../../../redux/DailyWeather/selectors';
-import { fetchDailyWeatherType } from '../../../redux/DailyWeather/types';
 import { useAppDispatch } from '../../../redux/store';
+import { dailyWeatherType } from '../../../redux/Weather/types';
 import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate';
 
-const DayCard: React.FC<fetchDailyWeatherType> = ({ dt, temp, weather }) => {
+const DayCard: React.FC<dailyWeatherType> = ({ dt, temp, weather }) => {
   const date = convertUnixToUkrainianDate(dt);
   console.log(date);
   return (

@@ -2,18 +2,18 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import DetailCard from '../../components/DetailDailyCard';
 import DayCard from '../../components/Weather/DayCard';
-import { selectDailyWeather } from '../../redux/DailyWeather/selectors';
-import { changeDetailCard } from '../../redux/DailyWeather/slice';
-import { fetchDailyWeatherType } from '../../redux/DailyWeather/types';
 import { useAppDispatch } from '../../redux/store';
+import { selectWeather } from '../../redux/Weather/selectors';
+import { changeDailyDetail } from '../../redux/Weather/slice';
+import { dailyWeatherType } from '../../redux/Weather/types';
 import Button from '../../ui/Button';
 
 const DailyWeather: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { daily, detail } = useSelector(selectDailyWeather);
+  const { daily, dailyDetail } = useSelector(selectWeather);
 
-  const onChangeDetail = (obj: fetchDailyWeatherType) => {
-    dispatch(changeDetailCard(obj));
+  const onChangeDetail = (obj: dailyWeatherType) => {
+    dispatch(changeDailyDetail(obj));
   };
 
   return (
@@ -30,7 +30,7 @@ const DailyWeather: React.FC = () => {
         )}
       </div>
 
-      {daily.length ? <DetailCard current={detail} /> : <div>Loading</div>}
+      {daily.length ? <DetailCard current={dailyDetail} /> : <div>Loading</div>}
     </div>
   );
 };

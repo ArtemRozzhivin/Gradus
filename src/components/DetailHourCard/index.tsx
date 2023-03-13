@@ -1,9 +1,9 @@
 import React from 'react';
-import { hourlyWeather } from '../../redux/HourlyWeather/types';
+import { hourlyWeatherType } from '../../redux/Weather/types';
 import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
 
 interface DetailCardProps {
-  current: hourlyWeather;
+  current: hourlyWeatherType;
 }
 
 const DetailHourCard: React.FC<DetailCardProps> = ({ current }) => {

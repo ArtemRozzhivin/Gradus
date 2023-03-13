@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectDailyWeather } from '../../redux/DailyWeather/selectors';
-import { fetchDailyWeatherType } from '../../redux/DailyWeather/types';
+import { dailyWeatherType } from '../../redux/Weather/types';
 import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
 
 interface DetailCardProps {
-  current: fetchDailyWeatherType;
+  current: dailyWeatherType;
 }
 
 const DetailCard: React.FC<DetailCardProps> = ({ current }) => {

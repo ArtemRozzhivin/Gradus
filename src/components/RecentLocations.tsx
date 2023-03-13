@@ -3,10 +3,8 @@ import { useSelector } from 'react-redux';
 import { selectCities } from '../redux/Cities/selectors';
 import { changeCurrentCity, removeAllRecentCities } from '../redux/Cities/slice';
 import { CityType } from '../redux/Cities/types';
-import { fetchCurrentWeather } from '../redux/CurrentWeather/asyncFetchCurrentWeather';
-import { fetchDailyWeather } from '../redux/DailyWeather/asyncFetchDailyWeather';
-import { fetchHourlyWeather } from '../redux/HourlyWeather/asyncFetchHourlyWeather';
 import { useAppDispatch } from '../redux/store';
+import { fetchWeather } from '../redux/Weather/asyncFetchWeather';
 import Button from '../ui/Button';
 import Modal from '../ui/Modal';
 import CityCard from './CityCard';
@@ -29,9 +27,7 @@ const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
 
     closeModal();
     dispatch(changeCurrentCity(city));
-    dispatch(fetchCurrentWeather({ lat, lon }));
-    dispatch(fetchHourlyWeather({ lat, lon }));
-    dispatch(fetchDailyWeather({ lat, lon }));
+    dispatch(fetchWeather({ lat, lon }));
   };
 
   const onRemoveAll = () => {

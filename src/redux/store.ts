@@ -1,20 +1,14 @@
-import { Locations } from './Locations/types';
-import { hourlyWeather } from './HourlyWeather/types';
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import citiesReducer from './Cities/slice';
 import locationsReducer from './Locations/slice';
-import currentWeatherReducer from './CurrentWeather/slice';
-import hourlyWeatherReducer from './HourlyWeather/slice';
-import dailyWeatherReducer from './DailyWeather/slice';
+import weatherReducer from './Weather/slice';
 
 export const store = configureStore({
   reducer: {
     locations: locationsReducer,
     cities: citiesReducer,
-    currentWeather: currentWeatherReducer,
-    hourlyWeather: hourlyWeatherReducer,
-    dailyWeather: dailyWeatherReducer,
+    weather: weatherReducer,
   },
 });
 

@@ -2,19 +2,15 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { fetchCities } from '../../redux/Cities/asyncFetchCities';
-import { selectCities } from '../../redux/Cities/selectors';
 import { addCityToRecent, changeCurrentCity } from '../../redux/Cities/slice';
 import { CityType } from '../../redux/Cities/types';
-import { fetchCurrentWeather } from '../../redux/CurrentWeather/asyncFetchCurrentWeather';
-import { fetchDailyWeather } from '../../redux/DailyWeather/asyncFetchDailyWeather';
-import { fetchHourlyWeather } from '../../redux/HourlyWeather/asyncFetchHourlyWeather';
 import { fetchUserLocation } from '../../redux/Locations/asyncFetchUserLocation';
 import { selectLocations } from '../../redux/Locations/selectors';
 import { useAppDispatch } from '../../redux/store';
+import { fetchWeather } from '../../redux/Weather/asyncFetchWeather';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import Modal from '../../ui/Modal';
-import { getWindDirection } from '../../utils/getWindDirection';
 import CityCard from '../CityCard';
 
 interface SearchWeatherType {
@@ -23,7 +19,6 @@ interface SearchWeatherType {
 
 const SearchWeather: React.FC<SearchWeatherType> = ({ cities }) => {
   const dispatch = useAppDispatch();
-  const { userLocation } = useSelector(selectLocations);
 
   const [searchCity, setSearchCity] = useState('Malyn');
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -48,9 +43,7 @@ const SearchWeather: React.FC<SearchWeatherType> = ({ cities }) => {
     closeModal();
     dispatch(addCityToRecent(city));
     dispatch(changeCurrentCity(city));
-    dispatch(fetchCurrentWeather({ lat, lon }));
-    dispatch(fetchHourlyWeather({ lat, lon }));
-    dispatch(fetchDailyWeather({ lat, lon }));
+    dispatch(fetchWeather({ lat, lon }));
   };
 
   useEffect(() => {

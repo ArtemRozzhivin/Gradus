@@ -2,22 +2,21 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import DetailHourCard from '../../components/DetailHourCard';
 import HourCard from '../../components/Weather/HourCard';
-import { fetchHourlyWeather } from '../../redux/HourlyWeather/asyncFetchHourlyWeather';
-import { selectHourlyWeather } from '../../redux/HourlyWeather/selectors';
-import { changeTodayDetail } from '../../redux/HourlyWeather/slice';
-import { hourlyWeather } from '../../redux/HourlyWeather/types';
 import { useAppDispatch } from '../../redux/store';
+import { selectWeather } from '../../redux/Weather/selectors';
+import { changeTodayDetail } from '../../redux/Weather/slice';
+import { hourlyWeatherType } from '../../redux/Weather/types';
 import Button from '../../ui/Button';
 
 const TodayWeather = () => {
   const dispatch = useAppDispatch();
-  const { today, todayDetail } = useSelector(selectHourlyWeather);
+  const { today, todayDetail } = useSelector(selectWeather);
 
   // useEffect(() => {
   //   dispatch(fetchHourlyWeather({ lat: 50.42, lon: 30 }));
   // }, []);
 
-  const onChangeDetail = (hour: hourlyWeather) => {
+  const onChangeDetail = (hour: hourlyWeatherType) => {
     dispatch(changeTodayDetail(hour));
   };
 

@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import CurrentWeather from './components/Weather/Current';
-import { fetchDailyWeather } from './redux/DailyWeather/asyncFetchDailyWeather';
 import { useAppDispatch } from './redux/store';
 import TomorrowWeather from './pages/TomorrowWeather';
 import DailyWeather from './pages/DailyWeather';
 import MainLayout from './layouts/MainLayout';
 import TodayWeather from './pages/TodayWeather';
 import axios from 'axios';
+import CurrentWeather from './pages/CurrentWeather';
 
 const App: React.FC = () => {
   return (
