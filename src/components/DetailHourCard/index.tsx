@@ -1,6 +1,8 @@
 import React from 'react';
 import { hourlyWeatherType } from '../../redux/Weather/types';
 import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
+import { getWindDirection } from '../../utils/getWindDirection';
+import WindArrow from '../WindArrow';
 
 interface DetailCardProps {
   current: hourlyWeatherType;
@@ -38,6 +40,9 @@ const DetailHourCard: React.FC<DetailCardProps> = ({ current }) => {
         <div>Тиск {current.pressure} mm Hg. Art.</div>
         <div>УФ {current.uvi}</div>
         <div>Швидкість вітру {current.wind_speed} м/сек</div>
+        <div>
+          <WindArrow direction={getWindDirection(current.wind_deg)} />
+        </div>
         <div>Хмарність {current.clouds}%</div>
       </div>
     </div>

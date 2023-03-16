@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { dailyWeatherType } from '../../redux/Weather/types';
 import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
+import { getWindDirection } from '../../utils/getWindDirection';
+import WindArrow from '../WindArrow';
 
 interface DetailCardProps {
   current: dailyWeatherType;
@@ -67,6 +69,9 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
         <div>Ймовірність опадів {current.pop}%</div>
         <div>УФ {current.uvi}</div>
         <div>Швидкість вітру {current.wind_speed} м/сек</div>
+        <div>
+          <WindArrow direction={getWindDirection(current.wind_deg)} />
+        </div>
         <div>Хмарність {current.clouds}%</div>
       </div>
 

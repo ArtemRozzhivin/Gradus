@@ -33,6 +33,7 @@ export type dailyWeatherType = {
   humidity: number;
   pressure: number;
   wind_speed: number;
+  wind_deg: number;
   clouds: number;
   pop: number;
   sunrise: number;

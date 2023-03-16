@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import WindArrow from '../../components/WindArrow';
 import { useAppDispatch } from '../../redux/store';
 import { selectWeather } from '../../redux/Weather/selectors';
 import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
+import { getWindDirection } from '../../utils/getWindDirection';
 
 const CurrentWeather = () => {
-  const dispatch = useAppDispatch();
   const { current } = useSelector(selectWeather);
   const date = convertUnixToUkrainianDate(current.dt);
   const sunrise = convertUnixToUkrainianDate(current.sunrise);
   const sunset = convertUnixToUkrainianDate(current.sunset);
+
+  console.log(getWindDirection(current.wind_deg));
 
   return Object.keys(current).length !== 0 ? (
     <div className="bg-app p-5 rounded-2xl flex flex-col gap-3">
@@ -44,6 +47,9 @@ const CurrentWeather = () => {
         <div>Тиск {current.pressure} mm Hg. Art.</div>
         <div>УФ {current.uvi}</div>
         <div>Швидкість вітру {current.wind_speed} м/сек</div>
+        <div>
+          <WindArrow direction={getWindDirection(current.wind_deg)} />
+        </div>
         <div>Хмарність {current.clouds}%</div>
       </div>
 
