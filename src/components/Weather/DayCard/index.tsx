@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../redux/store';
 import { dailyWeatherType } from '../../../redux/Weather/types';
 import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate';
+import { checkTempSign } from '../../../utils/chekTempSign';
 
 const DayCard: React.FC<dailyWeatherType> = ({ dt, temp, weather }) => {
   const date = convertUnixToUkrainianDate(dt);
-  console.log(date);
   return (
-    <div className="text-center bg-app rounded-2xl px-5 py-2">
+    <div className="text-center bg-inherit ">
       <div>{date.dayOfWeek}</div>
       <div>{date.date}</div>
       <div className="flex justify-center">
@@ -18,11 +18,11 @@ const DayCard: React.FC<dailyWeatherType> = ({ dt, temp, weather }) => {
       <div className="flex gap-3">
         <div>
           <div>мін.</div>
-          <div>{temp.min}&#x00B0;</div>
+          <div>{checkTempSign(temp.min)}&#x00B0;</div>
         </div>
         <div>
           <div>макс.</div>
-          <div>{temp.max}&#x00B0;</div>
+          <div>{checkTempSign(temp.max)}&#x00B0;</div>
         </div>
       </div>
     </div>

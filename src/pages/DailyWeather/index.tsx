@@ -21,9 +21,11 @@ const DailyWeather: React.FC = () => {
       <div className="flex justify-center gap-2 flex-wrap">
         {daily.length ? (
           daily.map((obj) => (
-            <Button key={obj.dt} onClick={() => onChangeDetail(obj)}>
-              <DayCard {...obj} />
-            </Button>
+            <div>
+              <Button key={obj.dt} onClick={() => onChangeDetail(obj)}>
+                <DayCard {...obj} />
+              </Button>
+            </div>
           ))
         ) : (
           <div>Loading</div>
