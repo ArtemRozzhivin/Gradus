@@ -51,9 +51,7 @@ const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
       <Modal isOpen={isOpenModal} onClose={closeModal}>
         {recentCities.length ? (
           <ul className="flex items-center justify-center gap-3 flex-wrap">
-            <Button onClick={onRemoveAll} red>
-              Remove all cities
-            </Button>
+            <Button onClick={onRemoveAll}>Remove all cities</Button>
             {recentCities.map((city: CityType, index) => (
               <div className="group relative">
                 <Button key={city.name + index} onClick={() => clickCityCard(city)} primary>

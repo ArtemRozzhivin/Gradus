@@ -1,37 +1,22 @@
-import clsx from 'clsx';
 import React from 'react';
+import MuiButton from '@mui/material/Button';
+import { useTheme } from '@mui/material/styles';
 
 interface ButtonInterface {
   onClick?: () => void;
   className?: string;
   children: any;
   primary?: boolean;
-  red?: boolean;
-  onlyBorder?: boolean;
+  outlined?: boolean;
 }
 
-const Button: React.FC<ButtonInterface> = ({
-  onClick,
-  className,
-  children,
-  primary,
-  red,
-  onlyBorder,
-}) => {
+const Button: React.FC<ButtonInterface> = ({ onClick, className, children, primary, outlined }) => {
+  const theme = useTheme();
+
   return (
-    <button
-      onClick={onClick}
-      className={clsx(
-        'inline-block',
-        {
-          'bg-second p-2 text-xs rounded-lg': primary,
-          'bg-red-500 text-white p-2 text-xs rounded-lg': red,
-          'bg-transparent border border-solid border-second text-second': onlyBorder,
-        },
-        className,
-      )}>
+    <MuiButton color="primary" variant="contained" onClick={onClick}>
       {children}
-    </button>
+    </MuiButton>
   );
 };
 

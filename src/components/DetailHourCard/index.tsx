@@ -9,12 +9,15 @@ interface DetailCardProps {
 }
 
 const DetailHourCard: React.FC<DetailCardProps> = ({ current }) => {
-  const date = convertUnixToUkrainianDate(current.dt);
+  const { dayOfWeek, date, time } = convertUnixToUkrainianDate(current.dt);
 
   return (
     <div className="bg-app p-5 rounded-2xl flex flex-col gap-3">
       <div className="bg-second rounded-md p-2">
-        <div>{date.hours}</div>
+        <div>
+          {date}, {dayOfWeek}, {time}
+        </div>
+
         <div>
           {current.weather[0].main} {current.weather[0].description}
         </div>

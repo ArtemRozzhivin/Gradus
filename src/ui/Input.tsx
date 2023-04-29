@@ -1,3 +1,5 @@
+import TextField from '@mui/material/TextField';
+import { useTheme } from '@mui/material/styles';
 import clsx from 'clsx';
 import React from 'react';
 
@@ -9,12 +11,15 @@ interface InputInterface {
 }
 
 const Input: React.FC<InputInterface> = ({ value, onChange, className, placeholder }) => {
+  const theme = useTheme();
   return (
-    <input
+    <TextField
+      fullWidth
+      color="primary"
+      label={placeholder}
+      variant="outlined"
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={clsx('w-full text-lg p-2 rounded-md text-black', {}, className)}
-      placeholder={placeholder}
     />
   );
 };

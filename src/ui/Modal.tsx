@@ -14,9 +14,7 @@ const Modal: React.FC<ModalInterface> = ({ isOpen, children, onClose, className 
     <Dialog open={isOpen} onClose={onClose}>
       <div className="p-3">
         <div className="flex justify-end mb-2">
-          <Button onlyBorder onClick={onClose}>
-            Close
-          </Button>
+          <Button onClick={onClose}>Close</Button>
         </div>
 
         <div>{children}</div>

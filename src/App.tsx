@@ -7,18 +7,29 @@ import MainLayout from './layouts/MainLayout';
 import TodayWeather from './pages/TodayWeather';
 import axios from 'axios';
 import CurrentWeather from './pages/CurrentWeather';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1c3c65',
+    },
+  },
+});
 
 const App: React.FC = () => {
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route path="/" element={<CurrentWeather />} />
-          <Route path="/8-days" element={<DailyWeather />} />
-          <Route path="/today" element={<TodayWeather />} />
-          <Route path="/tomorrow" element={<TomorrowWeather />} />
-        </Route>
-      </Routes>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route path="/" element={<CurrentWeather />} />
+            <Route path="/today" element={<TodayWeather />} />
+            <Route path="/tomorrow" element={<TomorrowWeather />} />
+            <Route path="/8-days" element={<DailyWeather />} />
+          </Route>
+        </Routes>
+      </ThemeProvider>
     </div>
   );
 };

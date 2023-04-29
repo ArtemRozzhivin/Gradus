@@ -54,7 +54,7 @@ const SearchWeather: React.FC<SearchWeatherType> = ({ cities }) => {
 
   return (
     <div className="flex gap-3">
-      <Input value={searchCity} onChange={getWeather} />
+      <Input value={searchCity} onChange={getWeather} placeholder="Місто" />
       <Button primary onClick={() => getCities()}>
         Search
       </Button>
