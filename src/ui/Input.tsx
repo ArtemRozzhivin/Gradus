@@ -7,7 +7,7 @@ interface InputInterface {
   value?: string;
   onChange: (value: string) => void;
   className?: string;
-  placeholder?: string;
+  placeholder?: string | null;
 }
 
 const Input: React.FC<InputInterface> = ({ value, onChange, className, placeholder }) => {

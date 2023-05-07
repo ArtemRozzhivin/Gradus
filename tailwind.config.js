@@ -13,7 +13,7 @@ module.exports = {
 
     extend: {
       maxWidth: {
-        container: '1100px',
+        container: '900px',
       },
 
       colors: {

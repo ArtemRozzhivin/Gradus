@@ -6,9 +6,11 @@ import { selectWeather } from '../../redux/Weather/selectors';
 import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
 import { getWindDirection } from '../../utils/getWindDirection';
 import { checkTempSign } from '../../utils/chekTempSign';
+import { useTranslation } from 'react-i18next';
 
 const CurrentWeather = () => {
   const { current } = useSelector(selectWeather);
+  const { t } = useTranslation();
   const { dayOfWeek, date, time } = convertUnixToUkrainianDate(current.dt);
   const sunrise = convertUnixToUkrainianDate(current.sunrise);
   const sunset = convertUnixToUkrainianDate(current.sunset);
@@ -16,14 +18,14 @@ const CurrentWeather = () => {
   console.log(getWindDirection(current.wind_deg));
 
   return Object.keys(current).length !== 0 ? (
-    <div className="bg-app p-5 rounded-2xl flex flex gap-3">
+    <div className="bg-app p-5 rounded-2xl flex justify-between">
       <div className="bg-second rounded-md p-2">
         <div>
           {date}, {dayOfWeek}, {time}
         </div>
 
         <div className="flex items-center">
-          <div className="text-7xl">{checkTempSign(current.temp)}</div>
+          <div className="text-7xl">{checkTempSign(current.temp)}°</div>
           <img
             width={80}
             height={80}
@@ -31,7 +33,9 @@ const CurrentWeather = () => {
             alt="weather"
           />
         </div>
-        <div>Відчувається як: {checkTempSign(current.feels_like)}</div>
+        <div>
+          {t('weather.temp.feelsLike')}: {checkTempSign(current.feels_like)}°
+        </div>
 
         <div>
           {current.weather[0].main} {current.weather[0].description}
@@ -39,23 +43,37 @@ const CurrentWeather = () => {
       </div>
 
       <div className="gap-5 items-center bg-second rounded-md p-2">
-        <div>Вологість: {current.humidity}%</div>
-        <div>Тиск: {current.pressure} mm Hg. Art.</div>
-        <div>Хмарність: {current.clouds}%</div>
-        <div>УФ: {current.uvi}</div>
+        <div>
+          {t('weather.humidity')}: {current.humidity}%
+        </div>
+        <div>
+          {t('weather.pressure')}: {current.pressure} mm Hg. Art.
+        </div>
+        <div>
+          {t('weather.cloudiness')}: {current.clouds}%
+        </div>
+        <div>
+          {t('weather.uvi')}: {current.uvi}
+        </div>
       </div>
 
       <div className="gap-5 items-center bg-second rounded-md p-2">
-        <div>Швидкість вітру: {current.wind_speed} м/сек</div>
+        <div>
+          {t('weather.wind.speed')}: {current.wind_speed} {t('unit.speed')}
+        </div>
         <div className="flex flex-col items-center gap-3">
-          <div>Напрям вітру</div>
+          <div>{t('weather.wind.direction')}</div>
           <WindArrow direction={getWindDirection(current.wind_deg)} />
         </div>
       </div>
 
       <div className="bg-second rounded-md p-2">
-        <div>Схід сонця {sunrise.time}</div>
-        <div>Захід сонця {sunset.time}</div>
+        <div>
+          {t('weather.sun.east')} {sunrise.time}
+        </div>
+        <div>
+          {t('weather.sun.west')} {sunset.time}
+        </div>
       </div>
     </div>
   ) : (

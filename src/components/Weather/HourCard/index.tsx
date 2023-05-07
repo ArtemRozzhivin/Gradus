@@ -1,6 +1,7 @@
 import React from 'react';
 import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate';
 import { checkTempSign } from '../../../utils/chekTempSign';
+import { useTranslation } from 'react-i18next';
 
 interface HourCardInterface {
   dt: number;
@@ -12,6 +13,7 @@ interface HourCardInterface {
 
 const HourCard: React.FC<HourCardInterface> = ({ dt, temp, feels_like, weather, wind_speed }) => {
   const { time } = convertUnixToUkrainianDate(dt);
+  const { t } = useTranslation();
 
   return (
     <div className="text-center bg-inherit">
@@ -20,15 +22,17 @@ const HourCard: React.FC<HourCardInterface> = ({ dt, temp, feels_like, weather, 
         <img src={`http://openweathermap.org/img/wn/${weather[0].icon}.png`} alt="weather" />
         <div className="flex gap-3">
           <div>
-            <div>темп.</div>
+            <div>{t('weather.temp.temp')}</div>
             <div>{checkTempSign(temp)}&#x00B0;</div>
           </div>
           <div>
-            <div>вічув.</div>
+            <div>{t('weather.temp.feels')}</div>
             <div>{checkTempSign(feels_like)}&#x00B0;</div>
           </div>
         </div>
-        <div>{wind_speed} м/сек</div>
+        <div>
+          {wind_speed} {t('unit.speed')}
+        </div>
       </div>
     </div>
   );

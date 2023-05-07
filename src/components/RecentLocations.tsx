@@ -10,6 +10,7 @@ import { fetchWeather } from '../redux/Weather/asyncFetchWeather';
 import Button from '../ui/Button';
 import Modal from '../ui/Modal';
 import CityCard from './CityCard';
+import { useTranslation } from 'react-i18next';
 
 interface RecentLocationsType {
   recentCities: CityType[];
@@ -17,6 +18,7 @@ interface RecentLocationsType {
 
 const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const closeModal = () => {
@@ -45,13 +47,13 @@ const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
   return (
     <div>
       <Button onClick={() => setIsOpenModal(true)} primary>
-        Recent locations
+        {t('header.recent')}
       </Button>
 
       <Modal isOpen={isOpenModal} onClose={closeModal}>
         {recentCities.length ? (
           <ul className="flex items-center justify-center gap-3 flex-wrap">
-            <Button onClick={onRemoveAll}>Remove all cities</Button>
+            <Button onClick={onRemoveAll}>{t('removeAllCities')}</Button>
             {recentCities.map((city: CityType, index) => (
               <div className="group relative">
                 <Button key={city.name + index} onClick={() => clickCityCard(city)} primary>
@@ -67,7 +69,7 @@ const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
             ))}
           </ul>
         ) : (
-          <div>Ви не додавали міст!</div>
+          <div>{t('emptyRecent')}</div>
         )}
       </Modal>
     </div>

@@ -13,6 +13,7 @@ import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import Modal from '../../ui/Modal';
 import CityCard from '../CityCard';
+import { useTranslation } from 'react-i18next';
 
 interface SearchWeatherType {
   cities: CityType[];
@@ -20,6 +21,7 @@ interface SearchWeatherType {
 
 const SearchWeather: React.FC<SearchWeatherType> = ({ cities }) => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const [searchCity, setSearchCity] = useState('Malyn');
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -54,9 +56,9 @@ const SearchWeather: React.FC<SearchWeatherType> = ({ cities }) => {
 
   return (
     <div className="flex gap-3">
-      <Input value={searchCity} onChange={getWeather} placeholder="Місто" />
+      <Input value={searchCity} onChange={getWeather} placeholder={t('header.city')} />
       <Button primary onClick={() => getCities()}>
-        Search
+        {t('header.search')}
       </Button>
 
       <Modal onClose={closeModal} isOpen={isOpenModal}>

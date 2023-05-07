@@ -1,0 +1,47 @@
+{
+  "header": {
+    "search": "Пошук",
+    "city": "Місто",
+    "recent": "Нещодавні міста",
+    "navigation": {
+      "current": "Зараз",
+      "today": "Сьогодні",
+      "tomorrow": "Завтра",
+      "week": "Тиждень"
+    }
+  },
+  "weather": {
+    "temp": {
+      "temp": "Темп",
+      "feels": "Відчув",
+      "max": "Макс",
+      "min": "Мін",
+      "feelsLike": "Відчувається як"
+    },
+    "humidity": "Вологість",
+    "pressure": "Тиск",
+    "cloudiness": "Хмарність",
+    "uvi": "УФ",
+    "wind": {
+      "speed": "Швидкість вітру",
+      "direction": "Напрямок вітру"
+    },
+    "sun": {
+      "east": "Схід сонця",
+      "west": "Захід сонця"
+    },
+    "moon": {
+      "east": "Схід місяця",
+      "west": "Захід місяця"
+    },
+    "morning": "Ранок",
+    "day": "День",
+    "evening": "Вечір",
+    "night": "Ніч"
+  },
+  "unit": {
+    "speed": "м/с"
+  },
+  "emptyRecent": "Ви не додавали міст",
+  "removeAllCities": "Видалити всі міста"
+}

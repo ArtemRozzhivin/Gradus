@@ -5,6 +5,7 @@ import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDa
 import { getWindDirection } from '../../utils/getWindDirection';
 import WindArrow from '../WindArrow';
 import { checkTempSign } from '../../utils/chekTempSign';
+import { useTranslation } from 'react-i18next';
 
 interface DetailCardProps {
   current: dailyWeatherType;
@@ -12,6 +13,7 @@ interface DetailCardProps {
 
 const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
   const { date, dayOfWeek, time } = convertUnixToUkrainianDate(current.dt);
+  const { t } = useTranslation();
   const sunrise = convertUnixToUkrainianDate(current.sunrise);
   const sunset = convertUnixToUkrainianDate(current.sunset);
   const moonrise = convertUnixToUkrainianDate(current.moonrise);
@@ -28,8 +30,12 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
 
           <div className="flex items-center">
             <div>
-              <div className="text-5xl">MAX: {checkTempSign(current.temp.max)}</div>
-              <div className="text-5xl">MIN: {checkTempSign(current.temp.min)}</div>
+              <div className="text-5xl">
+                {t('weather.temp.max')}: {checkTempSign(current.temp.max)}
+              </div>
+              <div className="text-5xl">
+                {t('weather.temp.min')}: {checkTempSign(current.temp.min)}
+              </div>
             </div>
             <img
               width={80}
@@ -46,53 +52,79 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
 
         <div className="flex gap-5 items-center bg-second rounded-md p-2">
           <div className="flex flex-col items-center">
-            <div>Ранок</div>
+            <div>{t('weather.morning')}</div>
             <div>{checkTempSign(morn)}</div>
-            <div>{checkTempSign(current.feels_like.morn)}</div>
+            <div>
+              {t('weather.temp.feels')} {checkTempSign(current.feels_like.morn)}
+            </div>
           </div>
           <div className="flex flex-col items-center">
-            <div>День</div>
+            <div>{t('weather.day')}</div>
             <div>{checkTempSign(day)}</div>
-            <div>Відчувається:{checkTempSign(current.feels_like.day)}</div>
+            <div>
+              {t('weather.temp.feels')} {checkTempSign(current.feels_like.day)}
+            </div>
           </div>
           <div className="flex flex-col items-center">
-            <div>Вечір</div>
+            <div>{t('weather.evening')}</div>
             <div>{checkTempSign(eve)}</div>
-            <div>{checkTempSign(current.feels_like.eve)}</div>
+            <div>
+              {t('weather.temp.feels')} {checkTempSign(current.feels_like.eve)}
+            </div>
           </div>
           <div className="flex flex-col items-center">
-            <div>Ніч</div>
+            <div>{t('weather.night')}</div>
             <div>{checkTempSign(night)}</div>
-            <div>{checkTempSign(current.feels_like.night)}</div>
+            <div>
+              {t('weather.temp.feels')} {checkTempSign(current.feels_like.night)}
+            </div>
           </div>
         </div>
       </div>
 
       <div className="flex gap-2">
         <div className="gap-5 items-center bg-second rounded-md p-2">
-          <div>Вологість: {current.humidity}%</div>
-          <div>Тиск: {current.pressure} mm Hg. Art.</div>
-          <div>Хмарність: {current.clouds}%</div>
-          <div>УФ: {current.uvi}</div>
+          <div>
+            {t('weather.humidity')}: {current.humidity}%
+          </div>
+          <div>
+            {t('weather.pressure')}: {current.pressure} mm Hg. Art.
+          </div>
+          <div>
+            {t('weather.cloudiness')}: {current.clouds}%
+          </div>
+          <div>
+            {t('weather.uvi')}: {current.uvi}
+          </div>
         </div>
 
         <div className="gap-5 items-center bg-second rounded-md p-2">
-          <div>Швидкість вітру: {current.wind_speed} м/сек</div>
+          <div>
+            {t('weather.wind.speed')}: {current.wind_speed} {t('unit.speed')}
+          </div>
           <div className="flex flex-col items-center gap-3">
-            <div>Напрям вітру</div>
+            <div>{t('weather.wind.direction')}</div>
             <WindArrow direction={getWindDirection(current.wind_deg)} />
           </div>
         </div>
       </div>
 
       <div className="bg-second rounded-md p-2">
-        <div>Схід сонця {sunrise.time}</div>
-        <div>Захід сонця {sunset.time}</div>
+        <div>
+          {t('weather.sun.east')}: {sunrise.time}
+        </div>
+        <div>
+          {t('weather.sun.west')}: {sunset.time}
+        </div>
       </div>
 
       <div className="bg-second rounded-md p-2">
-        <div>Схід місяця {moonrise.time}</div>
-        <div>Захід місяця {moonset.time}</div>
+        <div>
+          {t('weather.moon.east')}: {sunrise.time}
+        </div>
+        <div>
+          {t('weather.moon.west')}: {sunset.time}
+        </div>
       </div>
     </div>
   );

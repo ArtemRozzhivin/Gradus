@@ -1,0 +1,47 @@
+{
+  "header": {
+    "search": "Search",
+    "city": "City",
+    "recent": "Recent locations",
+    "navigation": {
+      "current": "Current",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "week": "Week"
+    }
+  },
+  "weather": {
+    "temp": {
+      "temp": "Temp",
+      "feels": "Feels",
+      "max": "Max",
+      "min": "Min",
+      "feelsLike": "Feels like"
+    },
+    "humidity": "Humidity",
+    "pressure": "Pressure",
+    "cloudiness": "Cloudiness",
+    "uvi": "Uvi",
+    "wind": {
+      "speed": "Wind speed",
+      "direction": "Wind direction"
+    },
+    "sun": {
+      "east": "Sunrise",
+      "west": "Sunset"
+    },
+    "moon": {
+      "east": "Moonrise",
+      "west": "Moonset"
+    },
+    "morning": "Morning",
+    "day": "Day",
+    "evening": "Evening",
+    "night": "Night"
+  },
+  "unit": {
+    "speed": "m/s"
+  },
+  "emptyRecent": "You have not added any cities",
+  "removeAllCities": "Remove all cities"
+}
