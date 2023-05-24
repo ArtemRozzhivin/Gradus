@@ -8,12 +8,14 @@ import { checkTempSign } from '../../../utils/chekTempSign';
 import { useTranslation } from 'react-i18next';
 
 const DayCard: React.FC<dailyWeatherType> = ({ dt, temp, weather }) => {
-  const date = convertUnixToUkrainianDate(dt);
+  const { dayNum, month, dayOfWeek } = convertUnixToUkrainianDate(dt);
   const { t } = useTranslation();
   return (
     <div className="text-center bg-inherit ">
-      <div>{date.dayOfWeek}</div>
-      <div>{date.date}</div>
+      <div>
+        {dayNum} {t(`months.${month}`)}
+      </div>
+      <div>{t(`week.${dayOfWeek}`)}</div>
       <div className="flex justify-center">
         <img src={`http://openweathermap.org/img/wn/${weather[0].icon}.png`} alt="weather" />
       </div>

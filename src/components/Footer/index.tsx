@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <div className="bg-app p-5 rounded-t-xl">
+    <div className="bg-light p-5 rounded-t-xl">
       <div className="flex justify-between items-center">
         <div>
           <p>Made by Artem Rozzhyvin — Copyright 2023</p>

@@ -1,24 +1,24 @@
 export const convertUnixToUkrainianDate = (unixDate: number) => {
-  const daysOfWeek = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П`ятниця', 'Субота'];
+  const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
   const months = [
-    'Січ',
-    'Лют',
-    'Берез',
-    'Квіт',
-    'Трав',
-    'Черв',
-    'Лип',
-    'Сер',
-    'Верес',
-    'Жовт',
-    'Листоп',
-    'Груд',
+    'january',
+    'february',
+    'march',
+    'april',
+    'may',
+    'june',
+    'july',
+    'august',
+    'september',
+    'october',
+    'november',
+    'december',
   ];
 
   const date = new Date(unixDate * 1000);
 
   const dayOfWeek = daysOfWeek[date.getUTCDay()];
-  const day = date.getUTCDate();
+  const dayNum = date.getUTCDate();
   const month = months[date.getUTCMonth()];
   const hours = date.getHours();
   const minutes = date.getMinutes();
@@ -26,7 +26,8 @@ export const convertUnixToUkrainianDate = (unixDate: number) => {
 
   return {
     dayOfWeek,
-    date: `${day} ${month}`,
+    dayNum,
+    month,
     time,
   };
 };

@@ -43,5 +43,28 @@
     "speed": "м/с"
   },
   "emptyRecent": "Ви не додавали міст",
-  "removeAllCities": "Видалити всі міста"
+  "removeAllCities": "Видалити всі міста",
+  "week": {
+    "monday": "Понеділок",
+    "tuesday": "Вівторок",
+    "wednesday": "Середа",
+    "thursday": "Четвер",
+    "friday": "П'ятниця",
+    "saturday": "Субота",
+    "sunday": "Неділя"
+  },
+  "months": {
+    "january": "Січ",
+    "february": "Лют",
+    "march": "Берез",
+    "april": "Квіт",
+    "may": "Трав",
+    "june": "Черв",
+    "july": "Лип",
+    "august": "Серп",
+    "september": "Верес",
+    "october": "Жовт",
+    "november": "Листоп",
+    "december": "Груд"
+  }
 }

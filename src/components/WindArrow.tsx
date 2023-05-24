@@ -2,9 +2,11 @@ import React from 'react';
 
 interface WindArrowType {
   direction: string;
+  w?: string;
+  h?: string;
 }
 
-const WindArrow: React.FC<WindArrowType> = ({ direction }) => {
+const WindArrow: React.FC<WindArrowType> = ({ direction, h = 25, w = 25 }) => {
   const renderArrow = (direction: string) => {
     switch (direction) {
       case 'Північний':
@@ -12,8 +14,8 @@ const WindArrow: React.FC<WindArrowType> = ({ direction }) => {
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
+            width={w}
+            height={h}
             fill="white"
             viewBox="0 0 32 32">
             <title>arrow-up2</title>
@@ -25,8 +27,8 @@ const WindArrow: React.FC<WindArrowType> = ({ direction }) => {
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
+            width={w}
+            height={h}
             fill="white"
             viewBox="0 0 32 32">
             <title>arrow-up-right2</title>
@@ -38,8 +40,8 @@ const WindArrow: React.FC<WindArrowType> = ({ direction }) => {
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
+            width={w}
+            height={h}
             fill="white"
             viewBox="0 0 32 32">
             <title>arrow-right2</title>
@@ -51,8 +53,8 @@ const WindArrow: React.FC<WindArrowType> = ({ direction }) => {
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
+            width={w}
+            height={h}
             fill="white"
             viewBox="0 0 32 32">
             <title>arrow-down-right2</title>
@@ -64,8 +66,8 @@ const WindArrow: React.FC<WindArrowType> = ({ direction }) => {
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
+            width={w}
+            height={h}
             fill="white"
             viewBox="0 0 32 32">
             <title>arrow-down2</title>
@@ -77,8 +79,8 @@ const WindArrow: React.FC<WindArrowType> = ({ direction }) => {
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
+            width={w}
+            height={h}
             fill="white"
             viewBox="0 0 32 32">
             <title>arrow-down-left2</title>
@@ -90,8 +92,8 @@ const WindArrow: React.FC<WindArrowType> = ({ direction }) => {
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
+            width={w}
+            height={h}
             fill="white"
             viewBox="0 0 32 32">
             <title>arrow-left2</title>
@@ -103,8 +105,8 @@ const WindArrow: React.FC<WindArrowType> = ({ direction }) => {
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
+            width={w}
+            height={h}
             fill="white"
             viewBox="0 0 32 32">
             <title>arrow-up-left2</title>
@@ -113,11 +115,7 @@ const WindArrow: React.FC<WindArrowType> = ({ direction }) => {
         );
     }
   };
-  return (
-    <div className="p-1 rounded-3xl border-4 border-solid border-white inline-block">
-      {renderArrow(direction)}
-    </div>
-  );
+  return <div className="inline-block">{renderArrow(direction)}</div>;
 };
 
 export default WindArrow;

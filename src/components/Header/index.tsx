@@ -19,9 +19,9 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5 p-5 bg-app rounded-b-xl w-full">
+    <div className="flex flex-col gap-5 p-5 bg-light rounded-b-xl w-full">
       <div className="flex items-center gap-7">
-        <h1 className="text-2xl text-second">Gradus</h1>
+        <h1 className="text-2xl text-blue">Gradus</h1>
         <div className="flex-auto">
           <SearchWeather cities={cities} />
         </div>

@@ -7,7 +7,6 @@ import { selectWeather } from '../../redux/Weather/selectors';
 import { changeTomorrowDetail } from '../../redux/Weather/slice';
 import { hourlyWeatherType } from '../../redux/Weather/types';
 import Button from '../../ui/Button';
-import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
 
 const TomorrowWeather = () => {
   const dispatch = useAppDispatch();
@@ -17,11 +16,9 @@ const TomorrowWeather = () => {
     dispatch(changeTomorrowDetail(hour));
   };
 
-  console.log(convertUnixToUkrainianDate(tomorrowDetail.dt).date);
-
   return (
     <div>
-      <div className="flex gap-1 overflow-x-auto">
+      <div className="flex gap-1 overflow-x-auto mb-5">
         {tomorrow.map((hour) => (
           <div>
             <Button key={hour.dt} onClick={() => onChangeDetail(hour)}>

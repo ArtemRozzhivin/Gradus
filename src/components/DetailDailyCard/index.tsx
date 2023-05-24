@@ -6,14 +6,15 @@ import { getWindDirection } from '../../utils/getWindDirection';
 import WindArrow from '../WindArrow';
 import { checkTempSign } from '../../utils/chekTempSign';
 import { useTranslation } from 'react-i18next';
+import { Divider } from '@mui/material';
 
 interface DetailCardProps {
   current: dailyWeatherType;
 }
 
 const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
-  const { date, dayOfWeek, time } = convertUnixToUkrainianDate(current.dt);
-  const { t } = useTranslation();
+  const { dayNum, month, dayOfWeek, time } = convertUnixToUkrainianDate(current.dt);
+  const { t, i18n } = useTranslation();
   const sunrise = convertUnixToUkrainianDate(current.sunrise);
   const sunset = convertUnixToUkrainianDate(current.sunset);
   const moonrise = convertUnixToUkrainianDate(current.moonrise);
@@ -21,20 +22,19 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
   const { day, eve, morn, night, max, min } = current.temp;
 
   return (
-    <div className="bg-app p-5 rounded-2xl flex-col gap-3">
+    <div className="bg-light p-5 rounded-2xl flex-col gap-3">
       <div className="flex">
-        <div className="bg-second rounded-md p-2">
+        <div className="text-blue rounded-md p-2">
           <div>
-            {date}, {dayOfWeek}, {time}
+            {dayNum} {t(`months.${month}`)}, {t(`week.${dayOfWeek}`)}, {time}
           </div>
 
           <div className="flex items-center">
             <div>
-              <div className="text-5xl">
-                {t('weather.temp.max')}: {checkTempSign(current.temp.max)}
-              </div>
-              <div className="text-5xl">
-                {t('weather.temp.min')}: {checkTempSign(current.temp.min)}
+              <div className="flex flex-col items-center gap-3 text-7xl">
+                {checkTempSign(current.temp.max)}°C
+                <div className="h-1 w-full bg-blue"></div>
+                {checkTempSign(current.temp.min)}°C
               </div>
             </div>
             <img
@@ -46,84 +46,129 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
           </div>
 
           <div>
-            {current.weather[0].main} {current.weather[0].description}
+            {i18n.language === 'en' ? current.weather[0].main : current.weather[0].description}
           </div>
         </div>
 
-        <div className="flex gap-5 items-center bg-second rounded-md p-2">
+        <div className="w-full gap-5 items-center text-blue rounded-md p-2 grid grid-cols-2 grid-rows-2">
           <div className="flex flex-col items-center">
-            <div>{t('weather.morning')}</div>
-            <div>{checkTempSign(morn)}</div>
-            <div>
-              {t('weather.temp.feels')} {checkTempSign(current.feels_like.morn)}
+            <div className="text-3xl mb-1">{t('weather.morning')}</div>
+            <div className="text-xl flex gap-5">
+              <div className="flex flex-col items-center">
+                <div>Real</div>
+                {checkTempSign(morn)}
+              </div>
+              <div className="flex flex-col items-center">
+                <div>{t('weather.temp.feels')} </div>
+                {checkTempSign(current.feels_like.morn)}
+              </div>
             </div>
           </div>
+
           <div className="flex flex-col items-center">
-            <div>{t('weather.day')}</div>
-            <div>{checkTempSign(day)}</div>
-            <div>
-              {t('weather.temp.feels')} {checkTempSign(current.feels_like.day)}
+            <div className="text-3xl mb-1">{t('weather.day')}</div>
+            <div className="text-xl flex gap-5">
+              <div>
+                <div className="flex flex-col items-center">Real</div>
+                {checkTempSign(day)}
+              </div>
+              <div>
+                <div className="flex flex-col items-center">{t('weather.temp.feels')} </div>
+                {checkTempSign(current.feels_like.day)}
+              </div>
             </div>
           </div>
+
           <div className="flex flex-col items-center">
-            <div>{t('weather.evening')}</div>
-            <div>{checkTempSign(eve)}</div>
-            <div>
-              {t('weather.temp.feels')} {checkTempSign(current.feels_like.eve)}
+            <div className="text-3xl mb-1">{t('weather.evening')}</div>
+            <div className="text-xl flex gap-5">
+              <div className="flex flex-col items-center">
+                <div>Real</div>
+                {checkTempSign(eve)}
+              </div>
+              <div>
+                <div className="flex flex-col items-center">{t('weather.temp.feels')}</div>
+                {checkTempSign(current.feels_like.eve)}
+              </div>
             </div>
           </div>
+
           <div className="flex flex-col items-center">
-            <div>{t('weather.night')}</div>
-            <div>{checkTempSign(night)}</div>
-            <div>
-              {t('weather.temp.feels')} {checkTempSign(current.feels_like.night)}
+            <div className="text-3xl mb-1">{t('weather.night')}</div>
+            <div className="text-xl flex gap-5">
+              <div className="flex flex-col items-center">
+                <div>Real</div>
+                {checkTempSign(night)}
+              </div>
+              <div>
+                <div className="flex flex-col items-center">{t('weather.temp.feels')}</div>
+                {checkTempSign(current.feels_like.night)}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
+      <Divider />
+
       <div className="flex gap-2">
-        <div className="gap-5 items-center bg-second rounded-md p-2">
-          <div>
-            {t('weather.humidity')}: {current.humidity}%
+        <div className="text-blue text-2xl flex w-full justify-center  items-center gap-5 p-2">
+          <div className="flex flex-col justify-center items-center">
+            {t('weather.humidity')}
+            <div>{current.humidity}%</div>
           </div>
-          <div>
-            {t('weather.pressure')}: {current.pressure} mm Hg. Art.
+          <div className="flex flex-col justify-center items-center">
+            {t('weather.pressure')}
+            <div>{current.pressure} mm Hg. Art.</div>
           </div>
-          <div>
-            {t('weather.cloudiness')}: {current.clouds}%
+          <div className="flex flex-col justify-center items-center">
+            {t('weather.cloudiness')}
+            <div>{current.clouds}%</div>
           </div>
-          <div>
-            {t('weather.uvi')}: {current.uvi}
+          <div className="flex flex-col justify-center items-center">
+            {t('weather.uvi')}
+            <div>{current.uvi}</div>
+          </div>
+        </div>
+      </div>
+
+      <Divider />
+
+      <div className="flex justify-center gap-5 text-blue rounded-md text-2xl p-2">
+        <div className="flex flex-col justify-center items-center">
+          {t('weather.wind.speed')}
+          <div className="text-2xl">
+            {current.wind_speed} {t('unit.speed')}
           </div>
         </div>
 
-        <div className="gap-5 items-center bg-second rounded-md p-2">
-          <div>
-            {t('weather.wind.speed')}: {current.wind_speed} {t('unit.speed')}
-          </div>
-          <div className="flex flex-col items-center gap-3">
-            <div>{t('weather.wind.direction')}</div>
+        <div className="flex flex-col justify-center items-center">
+          {t('weather.wind.direction')}
+          <div className="text-2xl">
             <WindArrow direction={getWindDirection(current.wind_deg)} />
           </div>
         </div>
       </div>
 
-      <div className="bg-second rounded-md p-2">
-        <div>
-          {t('weather.sun.east')}: {sunrise.time}
-        </div>
-        <div>
-          {t('weather.sun.west')}: {sunset.time}
-        </div>
-      </div>
+      <Divider />
 
-      <div className="bg-second rounded-md p-2">
-        <div>
-          {t('weather.moon.east')}: {sunrise.time}
+      <div className="flex justify-center gap-5 text-blue rounded-md text-3xl p-2">
+        <div className="flex flex-col justify-center items-center">
+          {t('weather.sun.east')}
+          <div className="text-2xl">{sunrise.time}</div>
         </div>
-        <div>
-          {t('weather.moon.west')}: {sunset.time}
+        <div className="flex flex-col justify-center items-center">
+          {t('weather.sun.west')}
+          <div className="text-2xl">{sunset.time}</div>
+        </div>
+
+        <div className="flex flex-col justify-center items-center">
+          {t('weather.moon.east')}
+          <div className="text-2xl">{sunrise.time}</div>
+        </div>
+        <div className="flex flex-col justify-center items-center">
+          {t('weather.moon.west')}
+          <div className="text-2xl">{sunset.time}</div>
         </div>
       </div>
     </div>

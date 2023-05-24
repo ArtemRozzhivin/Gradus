@@ -11,7 +11,7 @@ interface ButtonInterface {
 
 const Button: React.FC<ButtonInterface> = ({ onClick, className, children, primary, outlined }) => {
   return (
-    <MuiButton color="primary" variant="contained" onClick={onClick}>
+    <MuiButton fullWidth color="primary" variant="contained" onClick={onClick}>
       {children}
     </MuiButton>
   );

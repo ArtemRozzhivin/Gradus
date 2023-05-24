@@ -10,22 +10,22 @@ import { useTranslation } from 'react-i18next';
 
 const CurrentWeather = () => {
   const { current } = useSelector(selectWeather);
-  const { t } = useTranslation();
-  const { dayOfWeek, date, time } = convertUnixToUkrainianDate(current.dt);
+  const { t, i18n } = useTranslation();
+  const { dayOfWeek, dayNum, month, time } = convertUnixToUkrainianDate(current.dt);
   const sunrise = convertUnixToUkrainianDate(current.sunrise);
   const sunset = convertUnixToUkrainianDate(current.sunset);
 
   console.log(getWindDirection(current.wind_deg));
 
   return Object.keys(current).length !== 0 ? (
-    <div className="bg-app p-5 rounded-2xl flex justify-between">
-      <div className="bg-second rounded-md p-2">
+    <div className="bg-light p-5 rounded-2xl flex justify-between">
+      <div className="bg-blue rounded-md p-2">
         <div>
-          {date}, {dayOfWeek}, {time}
+          {dayNum} {t(`months.${month}`)}, {t(`week.${dayOfWeek}`)}, {time}
         </div>
 
         <div className="flex items-center">
-          <div className="text-7xl">{checkTempSign(current.temp)}°</div>
+          <div className="text-7xl">{checkTempSign(current.temp)}°C</div>
           <img
             width={80}
             height={80}
@@ -34,15 +34,15 @@ const CurrentWeather = () => {
           />
         </div>
         <div>
-          {t('weather.temp.feelsLike')}: {checkTempSign(current.feels_like)}°
+          {t('weather.temp.feelsLike')}: {checkTempSign(current.feels_like)}°C
         </div>
 
         <div>
-          {current.weather[0].main} {current.weather[0].description}
+          {i18n.language === 'en' ? current.weather[0].main : current.weather[0].description}
         </div>
       </div>
 
-      <div className="gap-5 items-center bg-second rounded-md p-2">
+      <div className="gap-5 items-center bg-blue rounded-md p-2">
         <div>
           {t('weather.humidity')}: {current.humidity}%
         </div>
@@ -57,7 +57,7 @@ const CurrentWeather = () => {
         </div>
       </div>
 
-      <div className="gap-5 items-center bg-second rounded-md p-2">
+      <div className="gap-5 items-center bg-blue rounded-md p-2">
         <div>
           {t('weather.wind.speed')}: {current.wind_speed} {t('unit.speed')}
         </div>
@@ -67,7 +67,7 @@ const CurrentWeather = () => {
         </div>
       </div>
 
-      <div className="bg-second rounded-md p-2">
+      <div className="bg-blue rounded-md p-2">
         <div>
           {t('weather.sun.east')} {sunrise.time}
         </div>
