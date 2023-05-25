@@ -18,7 +18,7 @@ const TodayWeather = () => {
 
   return (
     <div>
-      <div className="flex gap-1 overflow-x-auto">
+      <div className="flex gap-1 justify-center overflow-x-auto mb-5">
         {today.map((hour) => (
           <div>
             <Button key={hour.dt} onClick={() => onChangeDetail(hour)}>

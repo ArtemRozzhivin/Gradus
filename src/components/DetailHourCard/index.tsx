@@ -6,21 +6,34 @@ import WindArrow from '../WindArrow';
 import { checkTempSign } from '../../utils/chekTempSign';
 import { useTranslation } from 'react-i18next';
 import { Divider } from '@mui/material';
+import { selectCities } from '../../redux/Cities/selectors';
+import { useSelector } from 'react-redux';
 
 interface DetailCardProps {
   current: hourlyWeatherType;
 }
 
 const DetailHourCard: React.FC<DetailCardProps> = ({ current }) => {
+  const { currentCity, userCity } = useSelector(selectCities);
   const { dayOfWeek, dayNum, month, time } = convertUnixToUkrainianDate(current.dt);
 
   const { t, i18n } = useTranslation();
 
   return (
-    <div className="bg-light p-5 rounded-2xl flex-col gap-3">
+    <div className="bg-darkApp shadow-xl p-5 rounded-2xl flex-col gap-3">
       <div className="flex justify-center text-center">
         <div className="text-blue rounded-md p-2">
-          <div>
+          {Object.keys(currentCity).length ? (
+            <div className="text-3xl">
+              {currentCity.name}, {currentCity.country}, {currentCity.state}
+            </div>
+          ) : (
+            <div className="text-3xl">
+              {userCity.name}, {userCity.country}, {userCity.state}
+            </div>
+          )}
+
+          <div className="text-2xl">
             {dayNum} {t(`months.${month}`)}, {t(`week.${dayOfWeek}`)}, {time}
           </div>
 

@@ -7,6 +7,7 @@ import WindArrow from '../WindArrow';
 import { checkTempSign } from '../../utils/chekTempSign';
 import { useTranslation } from 'react-i18next';
 import { Divider } from '@mui/material';
+import { selectCities } from '../../redux/Cities/selectors';
 
 interface DetailCardProps {
   current: dailyWeatherType;
@@ -20,18 +21,30 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
   const moonrise = convertUnixToUkrainianDate(current.moonrise);
   const moonset = convertUnixToUkrainianDate(current.moonset);
   const { day, eve, morn, night, max, min } = current.temp;
+  const { currentCity, userCity } = useSelector(selectCities);
 
   return (
-    <div className="bg-light p-5 rounded-2xl flex-col gap-3">
-      <div className="flex">
-        <div className="text-blue rounded-md p-2">
-          <div>
-            {dayNum} {t(`months.${month}`)}, {t(`week.${dayOfWeek}`)}, {time}
+    <div className="bg-lightApp shadow-xl p-5 rounded-2xl flex-col gap-3">
+      <div className="text-blue">
+        {Object.keys(currentCity).length ? (
+          <div className="text-3xl">
+            {currentCity.name}, {currentCity.country}, {currentCity.state}
           </div>
+        ) : (
+          <div className="text-3xl">
+            {userCity.name}, {userCity.country}, {userCity.state}
+          </div>
+        )}
+        <div className="text-2xl">
+          {dayNum} {t(`months.${month}`)}, {t(`week.${dayOfWeek}`)}, {time}
+        </div>
+      </div>
 
+      <div className="flex items-center">
+        <div className="text-blue rounded-md p-2">
           <div className="flex items-center">
             <div>
-              <div className="flex flex-col items-center gap-3 text-7xl">
+              <div className="flex flex-col items-center gap-3 text-6xl">
                 {checkTempSign(current.temp.max)}°C
                 <div className="h-1 w-full bg-blue"></div>
                 {checkTempSign(current.temp.min)}°C

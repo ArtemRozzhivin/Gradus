@@ -8,8 +8,9 @@ interface MapCardType {
 
 const MapCard: React.FC<MapCardType> = ({ coord }) => {
   return (
-    <div>
+    <div className="w-full p-5 rounded-2xl flex justify-center items-center bg-lightApp shadow-xl">
       <iframe
+        className="rounded-2xl"
         width="100%"
         height="400"
         src={`https://api.maptiler.com/maps/hybrid/?key=${mapApiKey}#12.5/${coord.lat}/${coord.lon}`}></iframe>

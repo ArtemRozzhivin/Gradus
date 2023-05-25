@@ -17,10 +17,11 @@ module.exports = {
       },
 
       colors: {
+        lightApp: '#e3e3e3',
         light: '#c2c2c6',
-        dark: '#1a1b25',
-        blue: '#1c3c65',
-        // background: '#002642',
+        dark: '#242531',
+        darkApp: '#282933',
+        blue: '#2c67b5',
       },
     },
   },
