@@ -1,7 +1,7 @@
-import React from 'react';
-import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate';
-import { checkTempSign } from '../../../utils/chekTempSign';
-import { useTranslation } from 'react-i18next';
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate'
+import { checkTempSign } from '../../../utils/chekTempSign'
 
 interface HourCardInterface {
   dt: number;
@@ -12,15 +12,15 @@ interface HourCardInterface {
 }
 
 const HourCard: React.FC<HourCardInterface> = ({ dt, temp, feels_like, weather, wind_speed }) => {
-  const { time } = convertUnixToUkrainianDate(dt);
-  const { t } = useTranslation();
+  const { time } = convertUnixToUkrainianDate(dt)
+  const { t } = useTranslation()
 
   return (
-    <div className="text-center bg-inherit">
-      <div className="flex flex-col justify-center items-center">
+    <div className='text-center bg-inherit'>
+      <div className='flex flex-col justify-center items-center'>
         <div>{time}</div>
-        <img src={`http://openweathermap.org/img/wn/${weather[0].icon}.png`} alt="weather" />
-        <div className="flex gap-3">
+        <img src={`http://openweathermap.org/img/wn/${weather[0].icon}.png`} alt='weather' />
+        <div className='flex gap-3'>
           <div>
             <div>{t('weather.temp.temp')}</div>
             <div>{checkTempSign(temp)}&#x00B0;</div>
@@ -35,7 +35,7 @@ const HourCard: React.FC<HourCardInterface> = ({ dt, temp, feels_like, weather, 
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HourCard;
+export default HourCard

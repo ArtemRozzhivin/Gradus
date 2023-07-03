@@ -1,25 +1,25 @@
-import { AsyncThunkAction } from '@reduxjs/toolkit';
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../../redux/store';
-import { dailyWeatherType } from '../../../redux/Weather/types';
-import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate';
-import { checkTempSign } from '../../../utils/chekTempSign';
-import { useTranslation } from 'react-i18next';
+import { AsyncThunkAction } from '@reduxjs/toolkit'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import { useAppDispatch } from '../../../redux/store'
+import { dailyWeatherType } from '../../../redux/Weather/types'
+import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate'
+import { checkTempSign } from '../../../utils/chekTempSign'
 
 const DayCard: React.FC<dailyWeatherType> = ({ dt, temp, weather }) => {
-  const { dayNum, month, dayOfWeek } = convertUnixToUkrainianDate(dt);
-  const { t } = useTranslation();
+  const { dayNum, month, dayOfWeek } = convertUnixToUkrainianDate(dt)
+  const { t } = useTranslation()
   return (
-    <div className="text-center bg-inherit ">
+    <div className='text-center bg-inherit '>
       <div>
         {dayNum} {t(`months.${month}`)}
       </div>
       <div>{t(`week.${dayOfWeek}`)}</div>
-      <div className="flex justify-center">
-        <img src={`http://openweathermap.org/img/wn/${weather[0].icon}.png`} alt="weather" />
+      <div className='flex justify-center'>
+        <img src={`http://openweathermap.org/img/wn/${weather[0].icon}.png`} alt='weather' />
       </div>
-      <div className="flex gap-3">
+      <div className='flex gap-3'>
         <div>
           <div>{t('weather.temp.min')}</div>
           <div>{checkTempSign(temp.min)}&#x00B0;</div>
@@ -30,7 +30,7 @@ const DayCard: React.FC<dailyWeatherType> = ({ dt, temp, weather }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DayCard;
+export default DayCard

@@ -1,3 +1,3 @@
-import { RootState } from '../store';
+import { RootState } from '../store'
 
-export const selectWeather = (state: RootState) => state.weather;
+export const selectWeather = (state: RootState) => state.weather
