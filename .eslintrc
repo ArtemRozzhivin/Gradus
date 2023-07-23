@@ -68,7 +68,9 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/function-component-definition": "off",
     "semi": ["error", "never"],
-		"no-restricted-syntax": "warn"
+		"no-restricted-syntax": "warn",
+		"import/no-extraneous-dependencies": "warn",
+		"prefer-destructuring":"off"
   },
 
   // "settings": {

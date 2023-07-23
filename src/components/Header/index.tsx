@@ -1,13 +1,81 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Divider, FormControl, FormHelperText, MenuItem, Select } from '@mui/material'
+import {Transition, Menu } from '@headlessui/react'
+import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
+import cx from 'clsx'
 import { selectCities } from '../../redux/Cities/selectors'
 import SearchWeather from '../SearchWeather'
 import WeatherNavigation from '../WeatherNavigation'
 import RecentLocations from '../RecentLocations'
 import Button from '../../ui/Button'
 import SelectLang from '../SelectLang'
+
+
+const ThemeMenu = ({
+  theme, t, switchTheme,
+}: {
+  theme: string,
+  t: (key: string, options?: {
+    [key: string]: string | number | null,
+  }) => string,
+  switchTheme: (i: string) => void,
+}) => (
+  <Menu as='div' className='relative ml-3'>
+    <div>
+      <Menu.Button className='flex justify-center items-center font-semibold leading-6 text-base text-slate-800 hover:text-slate-700 dark:text-slate-200 dark:hover:text-white'>
+        <span className='sr-only'>
+          {t('header.switchTheme')}
+        </span>
+        {theme === 'dark' ? (
+          <SunIcon className='h-6 w-6 text-gray-200 hover:text-gray-300 cursor-pointer' aria-hidden='true' />
+        ) : (
+          <MoonIcon className='h-6 w-6 text-slate-700 hover:text-slate-600 cursor-pointer' aria-hidden='true' />
+        )}
+      </Menu.Button>
+    </div>
+    <Transition
+      as={Fragment}
+      enter='transition ease-out duration-100'
+      enterFrom='transform opacity-0 scale-95'
+      enterTo='transform opacity-100 scale-100'
+      leave='transition ease-in duration-75'
+      leaveFrom='transform opacity-100 scale-100'
+      leaveTo='transform opacity-0 scale-95'
+    >
+      <Menu.Items className='absolute right-0 z-30 mt-2 w-36 min-w-max origin-top-right rounded-md bg-white dark:bg-slate-900 py-1 shadow-lg ring-1 ring-slate-200 dark:ring-slate-800 focus:outline-none'>
+        <Menu.Item>
+          {({ active }) => (
+            <div
+              className={cx('flex w-full font-semibold cursor-pointer px-4 py-2 text-sm text-indigo-600 dark:text-gray-50 hover:bg-gray-100 hover:dark:bg-slate-800', {
+                'bg-gray-100 dark:bg-slate-800': active,
+              })}
+              onClick={() => switchTheme('light')}
+            >
+              <SunIcon className='h-5 w-5 mr-2 text-indigo-600 dark:text-gray-200' aria-hidden='true' />
+              {t('header.light')}
+            </div>
+          )}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => (
+            <div
+              className={cx('flex w-full font-semibold cursor-pointer px-4 py-2 text-sm text-gray-700 dark:text-indigo-400 hover:bg-gray-100 hover:dark:bg-slate-800', {
+                'bg-gray-100 dark:bg-slate-800': active,
+              })}
+              onClick={() => switchTheme('dark')}
+            >
+              <MoonIcon className='h-5 w-5 mr-2 text-gray-200 dark:text-indigo-400' aria-hidden='true' />
+              {t('header.dark')}
+            </div>
+          )}
+        </Menu.Item>
+      </Menu.Items>
+    </Transition>
+  </Menu>
+)
+
 
 const Header: React.FC = () => {
   const { recentCities, cities } = useSelector(selectCities)
@@ -36,7 +104,7 @@ const Header: React.FC = () => {
 
         <SelectLang />
 
-        <Button onClick={togleTheme} id='theme-toggle' variant='text'>
+        {/* <Button onClick={togleTheme} id='theme-toggle' variant='text'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -63,7 +131,13 @@ const Header: React.FC = () => {
               d='M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z'
             />
           </svg>
-        </Button>
+        </Button> */}
+
+				{/* <ThemeMenu
+          theme={theme}
+          switchTheme={switchTheme}
+          t={t}
+          /> */}
       </div>
 
       <Divider />
