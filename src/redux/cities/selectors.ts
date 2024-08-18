@@ -1,3 +1,3 @@
-import { RootState } from '../store'
+import { RootState } from '../store';
 
-export const selectCities = (state: RootState) => state.cities
+export const selectCities = (state: RootState) => state.cities;

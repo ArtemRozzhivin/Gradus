@@ -1,7 +1,7 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate'
-import { checkTempSign } from '../../../utils/chekTempSign'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate';
+import { checkTempSign } from '../../../utils/chekTempSign';
 
 interface HourCardInterface {
   dt: number;
@@ -12,8 +12,8 @@ interface HourCardInterface {
 }
 
 const HourCard: React.FC<HourCardInterface> = ({ dt, temp, feels_like, weather, wind_speed }) => {
-  const { time } = convertUnixToUkrainianDate(dt)
-  const { t } = useTranslation()
+  const { time } = convertUnixToUkrainianDate(dt);
+  const { t } = useTranslation();
 
   return (
     <div className='text-center bg-inherit'>
@@ -35,7 +35,7 @@ const HourCard: React.FC<HourCardInterface> = ({ dt, temp, feels_like, weather, 
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HourCard
+export default HourCard;

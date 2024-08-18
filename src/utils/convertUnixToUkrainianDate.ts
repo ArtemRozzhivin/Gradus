@@ -1,5 +1,5 @@
 export const convertUnixToUkrainianDate = (unixDate: number) => {
-  const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+  const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
   const months = [
     'january',
     'february',
@@ -13,21 +13,21 @@ export const convertUnixToUkrainianDate = (unixDate: number) => {
     'october',
     'november',
     'december',
-  ]
+  ];
 
-  const date = new Date(unixDate * 1000)
+  const date = new Date(unixDate * 1000);
 
-  const dayOfWeek = daysOfWeek[date.getUTCDay()]
-  const dayNum = date.getUTCDate()
-  const month = months[date.getUTCMonth()]
-  const hours = date.getHours()
-  const minutes = date.getMinutes()
-  const time = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`
+  const dayOfWeek = daysOfWeek[date.getUTCDay()];
+  const dayNum = date.getUTCDate();
+  const month = months[date.getUTCMonth()];
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const time = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
 
   return {
     dayOfWeek,
     dayNum,
     month,
     time,
-  }
-}
+  };
+};

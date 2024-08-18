@@ -1,23 +1,23 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { Divider } from '@mui/material'
-import { useSelector } from 'react-redux'
-import { hourlyWeatherType } from '../../redux/Weather/types'
-import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate'
-import { getWindDirection } from '../../utils/getWindDirection'
-import WindArrow from '../WindArrow'
-import { checkTempSign } from '../../utils/chekTempSign'
-import { selectCities } from '../../redux/Cities/selectors'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Divider } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { hourlyWeatherType } from '../../redux/Weather/types';
+import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
+import { getWindDirection } from '../../utils/getWindDirection';
+import WindArrow from '../WindArrow';
+import { checkTempSign } from '../../utils/chekTempSign';
+import { selectCities } from '../../redux/Cities/selectors';
 
 interface DetailCardProps {
   current: hourlyWeatherType;
 }
 
 const DetailHourCard: React.FC<DetailCardProps> = ({ current }) => {
-  const { currentCity, userCity } = useSelector(selectCities)
-  const { dayOfWeek, dayNum, month, time } = convertUnixToUkrainianDate(current.dt)
+  const { currentCity, userCity } = useSelector(selectCities);
+  const { dayOfWeek, dayNum, month, time } = convertUnixToUkrainianDate(current.dt);
 
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation();
 
   return (
     <div className='bg-lightApp dark:bg-darkApp shadow-xl p-5 rounded-2xl flex-col gap-3'>
@@ -99,7 +99,7 @@ const DetailHourCard: React.FC<DetailCardProps> = ({ current }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DetailHourCard
+export default DetailHourCard;

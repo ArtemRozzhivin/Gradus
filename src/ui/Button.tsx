@@ -1,5 +1,5 @@
-import React from 'react'
-import MuiButton from '@mui/material/Button'
+import React from 'react';
+import MuiButton from '@mui/material/Button';
 
 interface ButtonInterface {
   id?: string;
@@ -22,7 +22,7 @@ const Button: React.FC<ButtonInterface> = ({
     <MuiButton id={id} fullWidth color={color} variant={variant} onClick={onClick}>
       {children}
     </MuiButton>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

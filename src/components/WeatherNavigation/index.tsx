@@ -1,17 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import Button from '../../ui/Button'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import Button from '../../ui/Button';
 
 const weatherNavbar = [
   { name: 'current', route: '/' },
   { name: 'today', route: '/today' },
   { name: 'tomorrow', route: '/tomorrow' },
   { name: 'week', route: '/8-days' },
-]
+];
 
 const WeatherNavigation: React.FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <div className=''>
@@ -23,7 +23,7 @@ const WeatherNavigation: React.FC = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default WeatherNavigation
+export default WeatherNavigation;

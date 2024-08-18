@@ -1,5 +1,3 @@
-import React from 'react';
-
 const BigHero = () => {
   return (
     <section className='relative h-[727px] flex flex-col justify-end lg:h-[648px] md:h-[695px] sm:h-[350px] xs:h-[245px]'>

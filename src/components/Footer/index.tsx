@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Footer: React.FC = () => {
   return (
@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
       </div>
       <div className='flex justify-center'>Made by Artem Rozzhyvin — Copyright 2023</div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

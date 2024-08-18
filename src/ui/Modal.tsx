@@ -1,6 +1,6 @@
-import React from 'react'
-import { Dialog } from '@mui/material'
-import Button from './Button'
+import React from 'react';
+import { Dialog } from '@mui/material';
+import Button from './Button';
 
 interface ModalInterface {
   isOpen: boolean;
@@ -30,7 +30,7 @@ const Modal: React.FC<ModalInterface> = ({ isOpen, children, onClose, className 
         <div className='h-full flex-auto flex justify-center items-center'>{children}</div>
       </div>
     </Dialog>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;
