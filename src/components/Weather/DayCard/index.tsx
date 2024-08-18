@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { dailyWeatherType } from '../../../redux/Weather/types';
+import { dailyWeatherType } from '../../../redux/weather/types';
 import { convertUnixToUkrainianDate } from '../../../utils/convertUnixToUkrainianDate';
 import { checkTempSign } from '../../../utils/chekTempSign';
 

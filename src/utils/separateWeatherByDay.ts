@@ -1,4 +1,4 @@
-import { hourlyWeatherType } from '../redux/Weather/types';
+import { hourlyWeatherType } from '../redux/weather/types';
 
 export const separateWeatherByDay = <T extends hourlyWeatherType>(weather: T[]) => {
   const today = new Date().getDate();

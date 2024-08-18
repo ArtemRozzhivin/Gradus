@@ -2,11 +2,11 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import Divider from '@mui/material/Divider';
 import WindArrow from '../../components/WindArrow';
-import { selectWeather } from '../../redux/Weather/selectors';
+import { selectWeather } from '../../redux/weather/selectors';
 import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
 import { getWindDirection } from '../../utils/getWindDirection';
 import { checkTempSign } from '../../utils/chekTempSign';
-import { selectCities } from '../../redux/Cities/selectors';
+import { selectCities } from '../../redux/cities/selectors';
 
 import humidSVG from '../../assets/SVG/humidity.svg';
 

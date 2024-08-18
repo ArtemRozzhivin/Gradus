@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { changeCurrentCity, removeAllRecentCities, removeRecentCity } from '../redux/Cities/slice';
-import { CityType } from '../redux/Cities/types';
-import { changeCurrentLocation } from '../redux/Locations/slice';
+import { changeCurrentCity, removeAllRecentCities, removeRecentCity } from '../redux/cities/slice';
+import { CityType } from '../redux/cities/types';
+import { changeCurrentLocation } from '../redux/locations/slice';
 import { useAppDispatch } from '../redux/store';
-import { fetchWeather } from '../redux/Weather/asyncFetchWeather';
+import { fetchWeather } from '../redux/weather/asyncFetchWeather';
 import Button from '../ui/Button';
 import Modal from '../ui/Modal';
 import CityCard from './CityCard';

@@ -2,12 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Divider } from '@mui/material';
-import { dailyWeatherType } from '../../redux/Weather/types';
+import { dailyWeatherType } from '../../redux/weather/types';
 import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
 import { getWindDirection } from '../../utils/getWindDirection';
 import WindArrow from '../WindArrow';
 import { checkTempSign } from '../../utils/chekTempSign';
-import { selectCities } from '../../redux/Cities/selectors';
+import { selectCities } from '../../redux/cities/selectors';
 
 interface DetailCardProps {
   current: dailyWeatherType;

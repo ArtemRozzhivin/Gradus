@@ -2,9 +2,9 @@ import { useSelector } from 'react-redux';
 import DetailHourCard from '../../components/DetailHourCard';
 import HourCard from '../../components/Weather/HourCard';
 import { useAppDispatch } from '../../redux/store';
-import { selectWeather } from '../../redux/Weather/selectors';
-import { changeTomorrowDetail } from '../../redux/Weather/slice';
-import { hourlyWeatherType } from '../../redux/Weather/types';
+import { selectWeather } from '../../redux/weather/selectors';
+import { changeTomorrowDetail } from '../../redux/weather/slice';
+import { hourlyWeatherType } from '../../redux/weather/types';
 import Button from '../../ui/Button';
 
 const TomorrowWeather = () => {

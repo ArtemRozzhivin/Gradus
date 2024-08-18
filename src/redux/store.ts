@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import citiesReducer from './Cities/slice';
-import locationsReducer from './Locations/slice';
-import weatherReducer from './Weather/slice';
+import citiesReducer from './cities/slice';
+import locationsReducer from './locations/slice';
+import weatherReducer from './weather/slice';
 
 export const store = configureStore({
   reducer: {

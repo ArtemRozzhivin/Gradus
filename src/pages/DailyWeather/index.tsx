@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import DetailCard from '../../components/DetailDailyCard';
 import DayCard from '../../components/Weather/DayCard';
 import { useAppDispatch } from '../../redux/store';
-import { selectWeather } from '../../redux/Weather/selectors';
-import { changeDailyDetail } from '../../redux/Weather/slice';
-import { dailyWeatherType } from '../../redux/Weather/types';
+import { selectWeather } from '../../redux/weather/selectors';
+import { changeDailyDetail } from '../../redux/weather/slice';
+import { dailyWeatherType } from '../../redux/weather/types';
 import Button from '../../ui/Button';
 
 const DailyWeather: React.FC = () => {

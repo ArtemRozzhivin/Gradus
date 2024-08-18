@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { fetchCities } from '../../redux/Cities/asyncFetchCities';
-import { addCityToRecent, changeCurrentCity } from '../../redux/Cities/slice';
-import { CityType } from '../../redux/Cities/types';
-import { fetchUserLocation } from '../../redux/Locations/asyncFetchUserLocation';
-import { changeCurrentLocation } from '../../redux/Locations/slice';
+import { fetchCities } from '../../redux/cities/asyncFetchCities';
+import { addCityToRecent, changeCurrentCity } from '../../redux/cities/slice';
+import { CityType } from '../../redux/cities/types';
+import { fetchUserLocation } from '../../redux/locations/asyncFetchUserLocation';
+import { changeCurrentLocation } from '../../redux/locations/slice';
 import { useAppDispatch } from '../../redux/store';
-import { fetchWeather } from '../../redux/Weather/asyncFetchWeather';
+import { fetchWeather } from '../../redux/weather/asyncFetchWeather';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import Modal from '../../ui/Modal';

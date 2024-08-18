@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Divider } from '@mui/material';
-import { selectCities } from '../../redux/Cities/selectors';
+import { selectCities } from '../../redux/cities/selectors';
 import SearchWeather from '../SearchWeather';
 import WeatherNavigation from '../WeatherNavigation';
 import RecentLocations from '../RecentLocations';

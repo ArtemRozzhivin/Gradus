@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import MapCard from '../components/MapCard';
-import { selectLocations } from '../redux/Locations/selectors';
+import { selectLocations } from '../redux/locations/selectors';
 
 const MainLayout: React.FC = () => {
   const { userLocation, currentLocation } = useSelector(selectLocations);
