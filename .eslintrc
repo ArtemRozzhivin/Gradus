@@ -9,7 +9,7 @@
     "airbnb",
     "eslint:recommended",
     "plugin:react/recommended",
-		"prettier"
+    "prettier"
   ],
   "overrides": [],
   "parserOptions": {
@@ -57,7 +57,7 @@
         "extensions": [".js", ".jsx", ".tsx", ".ts"]
       }
     ],
-		"react/require-default-props": "off",
+    "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
     "react/prefer-stateless-function": "off",
     "react/prop-types": "off",
@@ -67,25 +67,10 @@
     "react/react-in-jsx-scope": "off",
     "react-hooks/exhaustive-deps": "warn",
     "react/function-component-definition": "off",
-    "semi": ["error", "never"],
-		"no-restricted-syntax": "warn",
-		"import/no-extraneous-dependencies": "warn",
-		"prefer-destructuring":"off"
+    "no-restricted-syntax": "off",
+    "import/no-extraneous-dependencies": "warn",
+    "prefer-destructuring": "off"
   },
-
-  // "settings": {
-  //   "import/resolver": {
-  //     "node": {
-  //       "paths": ["src/models"],
-  //       "extensions": [".js", ".jsx", ".ts", ".tsx"]
-  //     }
-  //   }
-  // }
-
-  // "pretttier": {
-  //   "singleQuote": false,
-  //   "printWidth": 100
-  // },
 
   "settings": {
     "import/resolver": {

@@ -1,26 +1,20 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
-import Divider from '@mui/material/Divider'
-import WindArrow from '../../components/WindArrow'
-import { useAppDispatch } from '../../redux/store'
-import { selectWeather } from '../../redux/Weather/selectors'
-import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate'
-import { getWindDirection } from '../../utils/getWindDirection'
-import { checkTempSign } from '../../utils/chekTempSign'
-import { selectCities } from '../../redux/Cities/selectors'
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import Divider from '@mui/material/Divider';
+import WindArrow from '../../components/WindArrow';
+import { selectWeather } from '../../redux/Weather/selectors';
+import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
+import { getWindDirection } from '../../utils/getWindDirection';
+import { checkTempSign } from '../../utils/chekTempSign';
+import { selectCities } from '../../redux/Cities/selectors';
 
-import humidSVG from '../../assets/SVG/humidity.svg'
+import humidSVG from '../../assets/SVG/humidity.svg';
 
 const CurrentWeather = () => {
-  const { currentCity, userCity } = useSelector(selectCities)
-  const { current } = useSelector(selectWeather)
-  const { t, i18n } = useTranslation()
-  const { dayOfWeek, dayNum, month, time } = convertUnixToUkrainianDate(current.dt)
-  const sunrise = convertUnixToUkrainianDate(current.sunrise)
-  const sunset = convertUnixToUkrainianDate(current.sunset)
-
-  console.log(getWindDirection(current.wind_deg))
+  const { currentCity, userCity } = useSelector(selectCities);
+  const { current } = useSelector(selectWeather);
+  const { t, i18n } = useTranslation();
+  const { dayOfWeek, dayNum, month, time } = convertUnixToUkrainianDate(current.dt);
 
   return Object.keys(current).length !== 0 ? (
     <div className='bg-lightApp dark:bg-darkApp shadow-xl p-5 rounded-2xl flex-col gap-3'>
@@ -105,7 +99,7 @@ const CurrentWeather = () => {
     </div>
   ) : (
     <div>Loading</div>
-  )
-}
+  );
+};
 
-export default CurrentWeather
+export default CurrentWeather;

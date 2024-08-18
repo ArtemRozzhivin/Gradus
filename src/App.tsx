@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import axios from 'axios'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { useAppDispatch } from './redux/store'
-import TomorrowWeather from './pages/TomorrowWeather'
-import DailyWeather from './pages/DailyWeather'
-import MainLayout from './layouts/MainLayout'
-import TodayWeather from './pages/TodayWeather'
-import CurrentWeather from './pages/CurrentWeather'
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import TomorrowWeather from './pages/TomorrowWeather';
+import DailyWeather from './pages/DailyWeather';
+import MainLayout from './layouts/MainLayout';
+import TodayWeather from './pages/TodayWeather';
+import CurrentWeather from './pages/CurrentWeather';
 
 const theme = createTheme({
   palette: {
@@ -15,7 +13,7 @@ const theme = createTheme({
       main: '#2c67b5',
     },
   },
-})
+});
 
 const App: React.FC = () => {
   return (
@@ -31,7 +29,7 @@ const App: React.FC = () => {
         </Routes>
       </ThemeProvider>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

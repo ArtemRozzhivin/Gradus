@@ -1,27 +1,25 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
-import { Divider } from '@mui/material'
-import { dailyWeatherType } from '../../redux/Weather/types'
-import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate'
-import { getWindDirection } from '../../utils/getWindDirection'
-import WindArrow from '../WindArrow'
-import { checkTempSign } from '../../utils/chekTempSign'
-import { selectCities } from '../../redux/Cities/selectors'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { Divider } from '@mui/material';
+import { dailyWeatherType } from '../../redux/Weather/types';
+import { convertUnixToUkrainianDate } from '../../utils/convertUnixToUkrainianDate';
+import { getWindDirection } from '../../utils/getWindDirection';
+import WindArrow from '../WindArrow';
+import { checkTempSign } from '../../utils/chekTempSign';
+import { selectCities } from '../../redux/Cities/selectors';
 
 interface DetailCardProps {
   current: dailyWeatherType;
 }
 
 const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
-  const { dayNum, month, dayOfWeek, time } = convertUnixToUkrainianDate(current.dt)
-  const { t, i18n } = useTranslation()
-  const sunrise = convertUnixToUkrainianDate(current.sunrise)
-  const sunset = convertUnixToUkrainianDate(current.sunset)
-  const moonrise = convertUnixToUkrainianDate(current.moonrise)
-  const moonset = convertUnixToUkrainianDate(current.moonset)
-  const { day, eve, morn, night, max, min } = current.temp
-  const { currentCity, userCity } = useSelector(selectCities)
+  const { dayNum, month, dayOfWeek, time } = convertUnixToUkrainianDate(current.dt);
+  const { t, i18n } = useTranslation();
+  const sunrise = convertUnixToUkrainianDate(current.sunrise);
+  const sunset = convertUnixToUkrainianDate(current.sunset);
+  const { day, eve, morn, night } = current.temp;
+  const { currentCity, userCity } = useSelector(selectCities);
 
   return (
     <div className='bg-lightApp dark:bg-darkApp shadow-xl p-5 rounded-2xl flex-col gap-3'>
@@ -68,7 +66,7 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
             <div className='text-3xl mb-1'>{t('weather.morning')}</div>
             <div className='text-xl flex gap-5'>
               <div className='flex flex-col items-center'>
-                <div>Real</div>
+                <div>{t('weather.temp.real')} </div>
                 {checkTempSign(morn)}
               </div>
               <div className='flex flex-col items-center'>
@@ -82,7 +80,7 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
             <div className='text-3xl mb-1'>{t('weather.day')}</div>
             <div className='text-xl flex gap-5'>
               <div>
-                <div className='flex flex-col items-center'>Real</div>
+                <div className='flex flex-col items-center'>{t('weather.temp.real')}</div>
                 {checkTempSign(day)}
               </div>
               <div>
@@ -96,7 +94,7 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
             <div className='text-3xl mb-1'>{t('weather.evening')}</div>
             <div className='text-xl flex gap-5'>
               <div className='flex flex-col items-center'>
-                <div>Real</div>
+                <div>{t('weather.temp.real')}</div>
                 {checkTempSign(eve)}
               </div>
               <div>
@@ -110,7 +108,7 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
             <div className='text-3xl mb-1'>{t('weather.night')}</div>
             <div className='text-xl flex gap-5'>
               <div className='flex flex-col items-center'>
-                <div>Real</div>
+                <div>{t('weather.temp.real')}</div>
                 {checkTempSign(night)}
               </div>
               <div>
@@ -185,7 +183,7 @@ const DetailCard: React.FC<DetailCardProps> = ({ current }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DetailCard
+export default DetailCard;

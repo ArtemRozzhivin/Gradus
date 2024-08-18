@@ -1,5 +1,4 @@
-import React from 'react'
-import Button from '../../ui/Button'
+import React from 'react';
 
 export interface CityCardInterface {
   name: string;
@@ -19,7 +18,7 @@ const index: React.FC<CityCardInterface> = ({ name, lat, lon, country, state }) 
         lat: {lat}, lon: {lon}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default index
+export default index;

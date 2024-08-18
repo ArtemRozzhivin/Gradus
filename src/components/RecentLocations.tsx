@@ -1,48 +1,45 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
-import { selectCities } from '../redux/Cities/selectors'
-import { changeCurrentCity, removeAllRecentCities, removeRecentCity } from '../redux/Cities/slice'
-import { CityType } from '../redux/Cities/types'
-import { changeCurrentLocation } from '../redux/Locations/slice'
-import { Locations } from '../redux/Locations/types'
-import { useAppDispatch } from '../redux/store'
-import { fetchWeather } from '../redux/Weather/asyncFetchWeather'
-import Button from '../ui/Button'
-import Modal from '../ui/Modal'
-import CityCard from './CityCard'
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { changeCurrentCity, removeAllRecentCities, removeRecentCity } from '../redux/Cities/slice';
+import { CityType } from '../redux/Cities/types';
+import { changeCurrentLocation } from '../redux/Locations/slice';
+import { useAppDispatch } from '../redux/store';
+import { fetchWeather } from '../redux/Weather/asyncFetchWeather';
+import Button from '../ui/Button';
+import Modal from '../ui/Modal';
+import CityCard from './CityCard';
 
 interface RecentLocationsType {
   recentCities: CityType[];
 }
 
 const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
-  const dispatch = useAppDispatch()
-  const { t } = useTranslation()
-  const [isOpenModal, setIsOpenModal] = useState(false)
+  const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const closeModal = () => {
-    setIsOpenModal(false)
-  }
+    setIsOpenModal(false);
+  };
 
   const clickCityCard = (city: CityType) => {
-    const {lat} = city
-      const {lon} = city
+    const { lat } = city;
+    const { lon } = city;
 
-    closeModal()
-    dispatch(changeCurrentLocation({ lat, lon }))
-    dispatch(changeCurrentCity(city))
-    dispatch(fetchWeather({ lat, lon }))
-  }
+    closeModal();
+    dispatch(changeCurrentLocation({ lat, lon }));
+    dispatch(changeCurrentCity(city));
+    dispatch(fetchWeather({ lat, lon }));
+  };
 
   const onRemoveAll = () => {
-    dispatch(removeAllRecentCities())
-    closeModal()
-  }
+    dispatch(removeAllRecentCities());
+    closeModal();
+  };
 
   const onRemoveCity = (city: CityType) => {
-    dispatch(removeRecentCity(city))
-  }
+    dispatch(removeRecentCity(city));
+  };
 
   return (
     <div>
@@ -70,7 +67,7 @@ const RecentLocations: React.FC<RecentLocationsType> = ({ recentCities }) => {
         )}
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default RecentLocations
+export default RecentLocations;

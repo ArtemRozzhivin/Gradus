@@ -1,13 +1,3 @@
-export type weatherSliceType = {
-  current: currentWeatherType;
-  daily: dailyWeatherType[];
-  dailyDetail: dailyWeatherType;
-  today: hourlyWeatherType[];
-  todayDetail: hourlyWeatherType;
-  tomorrow: hourlyWeatherType[];
-  tomorrowDetail: hourlyWeatherType;
-};
-
 export type hourlyWeatherType = {
   dt: number;
   temp: number;
@@ -95,4 +85,14 @@ export type fetchWeatherType = {
 export type fetchWeatherProps = {
   lat: number;
   lon: number;
+};
+
+export type weatherSliceType = {
+  current: currentWeatherType;
+  daily: dailyWeatherType[];
+  dailyDetail: dailyWeatherType;
+  today: hourlyWeatherType[];
+  todayDetail: hourlyWeatherType;
+  tomorrow: hourlyWeatherType[];
+  tomorrowDetail: hourlyWeatherType;
 };

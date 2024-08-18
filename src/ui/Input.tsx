@@ -1,7 +1,5 @@
-import TextField from '@mui/material/TextField'
-import { useTheme } from '@mui/material/styles'
-import clsx from 'clsx'
-import React from 'react'
+import TextField from '@mui/material/TextField';
+import React from 'react';
 
 interface InputInterface {
   value?: string;
@@ -11,7 +9,6 @@ interface InputInterface {
 }
 
 const Input: React.FC<InputInterface> = ({ value, onChange, className, placeholder }) => {
-  const theme = useTheme()
   return (
     <TextField
       fullWidth
@@ -21,7 +18,7 @@ const Input: React.FC<InputInterface> = ({ value, onChange, className, placehold
       value={value}
       onChange={(e) => onChange(e.target.value)}
     />
-  )
-}
+  );
+};
 
-export default Input
+export default Input;
